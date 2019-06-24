@@ -1,0 +1,17 @@
+# Rx
+github "ReactiveX/RxSwift" "5.0.1"
+github "RxSwiftCommunity/RxGesture"
+github "RxSwiftCommunity/RxSwiftExt"
+
+#github "RxSwiftCommunity/RxSwiftUtilities"
+#github "RxSwiftCommunity/RxKeyboard"
+github "Mozilla9-org/RxSwiftUtilities" "2.2.1"
+github "Mozilla9-org/RxKeyboard" "0.9.5"
+
+# Utils
+github "kean/Nuke"
+github "marmelroy/PhoneNumberKit"
+github "SwiftyBeaver/SwiftyBeaver"
+
+# UI
+github "SVProgressHUD/SVProgressHUD"
