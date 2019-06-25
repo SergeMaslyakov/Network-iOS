@@ -1,0 +1,15 @@
+#include "Shared.xcconfig"
+
+// Linking
+LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/Frameworks @loader_path/Frameworks
+
+// Packaging
+INFOPLIST_FILE = NetworkTests/Configurations/Info.plist
+PRODUCT_BUNDLE_IDENTIFIER = ru.network.ios.NetworkTests
+PRODUCT_NAME = $(TARGET_NAME)
+
+// Build Options
+ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
+
+// Signing
+CODE_SIGN_STYLE = Automatic

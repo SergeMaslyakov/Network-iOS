@@ -8,10 +8,3 @@ github "RxSwiftCommunity/RxSwiftExt"
 github "Mozilla9-org/RxSwiftUtilities" "2.2.1"
 github "Mozilla9-org/RxKeyboard" "0.9.5"
 
-# Utils
-github "kean/Nuke"
-github "marmelroy/PhoneNumberKit"
-github "SwiftyBeaver/SwiftyBeaver"
-
-# UI
-github "SVProgressHUD/SVProgressHUD"

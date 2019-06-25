@@ -2,9 +2,9 @@ import Foundation
 
 public final class DebugBehavior: NetworkRequestBehavior {
 
-    private let logger: Logger
+    private let logger: NetworkLogger
 
-    public init(logger: Logger) {
+    public init(logger: NetworkLogger) {
         self.logger = logger
     }
 
