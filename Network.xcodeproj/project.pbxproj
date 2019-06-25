@@ -14,11 +14,8 @@
 		DA9ECB522243190100EDAF4A /* RxKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9ECB482243190100EDAF4A /* RxKeyboard.framework */; };
 		DA9ECB532243190100EDAF4A /* RxSwiftExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9ECB492243190100EDAF4A /* RxSwiftExt.framework */; };
 		DA9ECB612243841500EDAF4A /* RxSwiftUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9ECB5F2243841500EDAF4A /* RxSwiftUtilities.framework */; };
-		DA9ECB622243841500EDAF4A /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9ECB602243841500EDAF4A /* SVProgressHUD.framework */; };
 		E0FD11E721477A5F008C2EF8 /* .framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0FD11DD21477A5F008C2EF8 /* .framework */; };
 		FB0ED137228B55CD00D4F033 /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB0ED136228B55CD00D4F033 /* RxRelay.framework */; };
-		FBC412F0226CE12400AB3554 /* Nuke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC412EF226CE12400AB3554 /* Nuke.framework */; };
-		FBCA6312226675C20021655F /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBCA6311226675C20021655F /* SwiftyBeaver.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,12 +36,9 @@
 		DA9ECB482243190100EDAF4A /* RxKeyboard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxKeyboard.framework; path = ../Carthage/Build/iOS/RxKeyboard.framework; sourceTree = "<group>"; };
 		DA9ECB492243190100EDAF4A /* RxSwiftExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwiftExt.framework; path = ../Carthage/Build/iOS/RxSwiftExt.framework; sourceTree = "<group>"; };
 		DA9ECB5F2243841500EDAF4A /* RxSwiftUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwiftUtilities.framework; path = ../Carthage/Build/iOS/RxSwiftUtilities.framework; sourceTree = "<group>"; };
-		DA9ECB602243841500EDAF4A /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = ../Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		E0FD11DD21477A5F008C2EF8 /* .framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = .framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0FD11E621477A5F008C2EF8 /* .xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = .xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB0ED136228B55CD00D4F033 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = ../Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
-		FBC412EF226CE12400AB3554 /* Nuke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nuke.framework; path = ../Carthage/Build/iOS/Nuke.framework; sourceTree = "<group>"; };
-		FBCA6311226675C20021655F /* SwiftyBeaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyBeaver.framework; path = ../Carthage/Build/iOS/SwiftyBeaver.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,10 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBC412F0226CE12400AB3554 /* Nuke.framework in Frameworks */,
-				FBCA6312226675C20021655F /* SwiftyBeaver.framework in Frameworks */,
 				DA9ECB612243841500EDAF4A /* RxSwiftUtilities.framework in Frameworks */,
-				DA9ECB622243841500EDAF4A /* SVProgressHUD.framework in Frameworks */,
 				DA9ECB4E2243190100EDAF4A /* RxSwift.framework in Frameworks */,
 				FB0ED137228B55CD00D4F033 /* RxRelay.framework in Frameworks */,
 				DA9ECB502243190100EDAF4A /* RxCocoa.framework in Frameworks */,
@@ -81,10 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				FB0ED136228B55CD00D4F033 /* RxRelay.framework */,
-				FBC412EF226CE12400AB3554 /* Nuke.framework */,
-				FBCA6311226675C20021655F /* SwiftyBeaver.framework */,
 				DA9ECB5F2243841500EDAF4A /* RxSwiftUtilities.framework */,
-				DA9ECB602243841500EDAF4A /* SVProgressHUD.framework */,
 				DA9ECB432243190100EDAF4A /* RxBlocking.framework */,
 				DA9ECB462243190100EDAF4A /* RxCocoa.framework */,
 				DA9ECB422243190000EDAF4A /* RxGesture.framework */,
