@@ -28,10 +28,10 @@
 		955DD36A22C20AB70031AD92 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD34722C20AB70031AD92 /* NetworkError.swift */; };
 		955DD36B22C20AB70031AD92 /* NetworkClient+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD34922C20AB70031AD92 /* NetworkClient+Rx.swift */; };
 		955DD36C22C20AB70031AD92 /* HTTPStatusCodes+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD34C22C20AB70031AD92 /* HTTPStatusCodes+Extensions.swift */; };
-		955DD36D22C20AB70031AD92 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 955DD34D22C20AB70031AD92 /* LICENSE */; };
 		955DD36E22C20AB70031AD92 /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD34E22C20AB70031AD92 /* HTTPStatusCodes.swift */; };
 		955DD36F22C20BDA0031AD92 /* Network.h in Headers */ = {isa = PBXBuildFile; fileRef = 955DD33322C20AB70031AD92 /* Network.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		957FE6F422C2140400A11BC2 /* NetworkLoger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957FE6F322C2140400A11BC2 /* NetworkLoger.swift */; };
+		957FE70322C214CA00A11BC2 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957FE6FE22C214CA00A11BC2 /* NetworkTests.swift */; };
 		DA9ECB4C2243190100EDAF4A /* RxGesture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9ECB422243190000EDAF4A /* RxGesture.framework */; };
 		DA9ECB4D2243190100EDAF4A /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9ECB432243190100EDAF4A /* RxBlocking.framework */; };
 		DA9ECB4E2243190100EDAF4A /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9ECB442243190100EDAF4A /* RxSwift.framework */; };
@@ -39,7 +39,7 @@
 		DA9ECB522243190100EDAF4A /* RxKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9ECB482243190100EDAF4A /* RxKeyboard.framework */; };
 		DA9ECB532243190100EDAF4A /* RxSwiftExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9ECB492243190100EDAF4A /* RxSwiftExt.framework */; };
 		DA9ECB612243841500EDAF4A /* RxSwiftUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9ECB5F2243841500EDAF4A /* RxSwiftUtilities.framework */; };
-		E0FD11E721477A5F008C2EF8 /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0FD11DD21477A5F008C2EF8 /* Network.framework */; };
+		E0FD11E721477A5F008C2EF8 /* NetworkFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0FD11DD21477A5F008C2EF8 /* NetworkFramework.framework */; };
 		FB0ED137228B55CD00D4F033 /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB0ED136228B55CD00D4F033 /* RxRelay.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +87,8 @@
 		955DD34D22C20AB70031AD92 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		955DD34E22C20AB70031AD92 /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCodes.swift; sourceTree = "<group>"; };
 		957FE6F322C2140400A11BC2 /* NetworkLoger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoger.swift; sourceTree = "<group>"; };
+		957FE6F722C214CA00A11BC2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		957FE6FE22C214CA00A11BC2 /* NetworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		DA9ECB422243190000EDAF4A /* RxGesture.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxGesture.framework; path = ../Carthage/Build/iOS/RxGesture.framework; sourceTree = "<group>"; };
 		DA9ECB432243190100EDAF4A /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = ../Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		DA9ECB442243190100EDAF4A /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
@@ -94,7 +96,7 @@
 		DA9ECB482243190100EDAF4A /* RxKeyboard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxKeyboard.framework; path = ../Carthage/Build/iOS/RxKeyboard.framework; sourceTree = "<group>"; };
 		DA9ECB492243190100EDAF4A /* RxSwiftExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwiftExt.framework; path = ../Carthage/Build/iOS/RxSwiftExt.framework; sourceTree = "<group>"; };
 		DA9ECB5F2243841500EDAF4A /* RxSwiftUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwiftUtilities.framework; path = ../Carthage/Build/iOS/RxSwiftUtilities.framework; sourceTree = "<group>"; };
-		E0FD11DD21477A5F008C2EF8 /* Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0FD11DD21477A5F008C2EF8 /* NetworkFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0FD11E621477A5F008C2EF8 /* NetworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB0ED136228B55CD00D4F033 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = ../Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,7 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0FD11E721477A5F008C2EF8 /* Network.framework in Frameworks */,
+				E0FD11E721477A5F008C2EF8 /* NetworkFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +248,23 @@
 			path = HTTPStatusCodes;
 			sourceTree = "<group>";
 		};
+		957FE6F522C214CA00A11BC2 /* NetworkTests */ = {
+			isa = PBXGroup;
+			children = (
+				957FE6FE22C214CA00A11BC2 /* NetworkTests.swift */,
+				957FE6F622C214CA00A11BC2 /* Configurations */,
+			);
+			path = NetworkTests;
+			sourceTree = "<group>";
+		};
+		957FE6F622C214CA00A11BC2 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				957FE6F722C214CA00A11BC2 /* Info.plist */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
 		E0C82F27214789D8009EA559 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +283,7 @@
 		E0FD11D321477A5F008C2EF8 = {
 			isa = PBXGroup;
 			children = (
+				957FE6F522C214CA00A11BC2 /* NetworkTests */,
 				955DD32422C20AB70031AD92 /* Network */,
 				E0FD11DE21477A5F008C2EF8 /* Products */,
 				E0C82F27214789D8009EA559 /* Frameworks */,
@@ -273,7 +293,7 @@
 		E0FD11DE21477A5F008C2EF8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E0FD11DD21477A5F008C2EF8 /* Network.framework */,
+				E0FD11DD21477A5F008C2EF8 /* NetworkFramework.framework */,
 				E0FD11E621477A5F008C2EF8 /* NetworkTests.xctest */,
 			);
 			name = Products;
@@ -293,9 +313,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		E0FD11DC21477A5F008C2EF8 /* Network */ = {
+		E0FD11DC21477A5F008C2EF8 /* NetworkFramework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E0FD11F121477A5F008C2EF8 /* Build configuration list for PBXNativeTarget "Network" */;
+			buildConfigurationList = E0FD11F121477A5F008C2EF8 /* Build configuration list for PBXNativeTarget "NetworkFramework" */;
 			buildPhases = (
 				E0FD11D821477A5F008C2EF8 /* Headers */,
 				E0FD11D921477A5F008C2EF8 /* Sources */,
@@ -306,9 +326,9 @@
 			);
 			dependencies = (
 			);
-			name = Network;
+			name = NetworkFramework;
 			productName = Core;
-			productReference = E0FD11DD21477A5F008C2EF8 /* Network.framework */;
+			productReference = E0FD11DD21477A5F008C2EF8 /* NetworkFramework.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		E0FD11E521477A5F008C2EF8 /* NetworkTests */ = {
@@ -362,7 +382,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E0FD11DC21477A5F008C2EF8 /* Network */,
+				E0FD11DC21477A5F008C2EF8 /* NetworkFramework */,
 				E0FD11E521477A5F008C2EF8 /* NetworkTests */,
 			);
 		};
@@ -373,7 +393,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				955DD36D22C20AB70031AD92 /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +440,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				957FE70322C214CA00A11BC2 /* NetworkTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,7 +449,7 @@
 /* Begin PBXTargetDependency section */
 		E0FD11E921477A5F008C2EF8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E0FD11DC21477A5F008C2EF8 /* Network */;
+			target = E0FD11DC21477A5F008C2EF8 /* NetworkFramework */;
 			targetProxy = E0FD11E821477A5F008C2EF8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -473,9 +493,11 @@
 			baseConfigurationReference = 955DD32822C20AB70031AD92 /* ReleaseTest.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CLANG_LINK_OBJC_RUNTIME = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = YES;
 				INFOPLIST_FILE = NetworkTests/Configurations/Info.plist;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -526,9 +548,11 @@
 			baseConfigurationReference = 955DD32E22C20AB70031AD92 /* DebugTest.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CLANG_LINK_OBJC_RUNTIME = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = YES;
 				INFOPLIST_FILE = NetworkTests/Configurations/Info.plist;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -546,7 +570,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E0FD11F121477A5F008C2EF8 /* Build configuration list for PBXNativeTarget "Network" */ = {
+		E0FD11F121477A5F008C2EF8 /* Build configuration list for PBXNativeTarget "NetworkFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E0FD11F221477A5F008C2EF8 /* Debug */,

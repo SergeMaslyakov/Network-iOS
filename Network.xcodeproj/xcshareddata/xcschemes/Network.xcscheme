@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E0FD11DC21477A5F008C2EF8"
-               BuildableName = "Network.framework"
-               BlueprintName = "Network"
+               BuildableName = "NetworkFramework.framework"
+               BlueprintName = "NetworkFramework"
                ReferencedContainer = "container:Network.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,8 +43,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E0FD11DC21477A5F008C2EF8"
-            BuildableName = "Network.framework"
-            BlueprintName = "Network"
+            BuildableName = "NetworkFramework.framework"
+            BlueprintName = "NetworkFramework"
             ReferencedContainer = "container:Network.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,8 +65,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E0FD11DC21477A5F008C2EF8"
-            BuildableName = "Network.framework"
-            BlueprintName = "Network"
+            BuildableName = "NetworkFramework.framework"
+            BlueprintName = "NetworkFramework"
             ReferencedContainer = "container:Network.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -83,8 +83,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E0FD11DC21477A5F008C2EF8"
-            BuildableName = "Network.framework"
-            BlueprintName = "Network"
+            BuildableName = "NetworkFramework.framework"
+            BlueprintName = "NetworkFramework"
             ReferencedContainer = "container:Network.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -1,4 +1,4 @@
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for Core.
 FOUNDATION_EXPORT double CoreVersionNumber;
