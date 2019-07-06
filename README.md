@@ -5,16 +5,16 @@ How to:
 #### 1 - Create an instance of NetworkClient, smth like that
 
 ```
-            let configuration = NetworkLayer.Configuration(timeout: 10,
-                                                           baseURL: "https://github.com",
-                                                           sessionDelegate: sessionDelegateProvider,
-                                                           authProvider: O2AuthProvider(),
-                                                           responseDecoder: JSONResponseDecoder(),
-                                                           requestEncoder: JSONResponseEncoder(),
-                                                           defaultBehaviors: [DebugBehavior(logger: logger)])
+let configuration = NetworkLayer.Configuration(timeout: 10,
+                                               baseURL: "https://github.com",
+                                               sessionDelegate: sessionDelegateProvider,
+                                               authProvider: O2AuthProvider(),
+                                               responseDecoder: JSONResponseDecoder(),
+                                               requestEncoder: JSONResponseEncoder(),
+                                               defaultBehaviors: [DebugBehavior(logger: logger)])
 
-            let networkClient = NetworkClientImpl(configuration: configuration, 
-                                                  sessionConfiguration: config.sessionConfiguration)
+let networkClient = NetworkClientImpl(configuration: configuration, 
+                                      sessionConfiguration: config.sessionConfiguration)
 ``` 
 
 #### 2 - API Endpoint descriptors, e.g.
@@ -57,24 +57,24 @@ struct SignUpEndpoint: EndpointDescriptor {
 #### 3 - Send request (generic or plain request)
 
 ```
-            let endpoint = SignUpEndpoint(data: data)
-            var task: URLSessionDataTask?
+let endpoint = SignUpEndpoint(data: data)
+var task: URLSessionDataTask?
 
-            let completion: ((Result<T, NetworkError>) -> Void) = { result in
-                switch result {
-                case .success(let model):
-                    // do smth with model
-                    print(model)
-                case .failure(let error):
-                    // do smth with error
-                    print(error)
-                }
-            }
+let completion: ((Result<T, NetworkError>) -> Void) = { result in
+    switch result {
+    case .success(let model):
+        // do smth with model
+        print(model)
+    case .failure(let error):
+        // do smth with error
+        print(error)
+    }
+}
 
-            do {
-                task = try networkClient.sendRequest(endpoint: endpoint, completion: completion)
-            } catch {
-                // catch validation, coding errors
-                print(error)
-            }
+do {
+    task = try networkClient.sendRequest(endpoint: endpoint, completion: completion)
+} catch {
+    // catch validation, coding errors
+    print(error)
+}
 ```
