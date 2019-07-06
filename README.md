@@ -2,27 +2,79 @@
 
 How to:
 
-#### Install [SwiftLint](https://github.com/realm/SwiftLint)
-
-- `> brew install swiftlint`
-
-#### Fetch dependencies
-
-- first of all you need to install `Carthage`
+#### 1 - Create an instance of NetworkClient, smth like that
 
 ```
-$ brew update
-$ brew install carthage
+            let configuration = NetworkLayer.Configuration(timeout: 10,
+                                                           baseURL: "https://github.com",
+                                                           sessionDelegate: sessionDelegateProvider,
+                                                           authProvider: O2AuthProvider(),
+                                                           responseDecoder: JSONResponseDecoder(),
+                                                           requestEncoder: JSONResponseEncoder(),
+                                                           defaultBehaviors: [DebugBehavior(logger: logger)])
+
+            let networkClient = NetworkClientImpl(configuration: configuration, 
+                                                  sessionConfiguration: config.sessionConfiguration)
+``` 
+
+#### 2 - API Endpoint descriptors, e.g.
+
+```
+struct SignUpEndpoint: EndpointDescriptor {
+
+    private let data: SignUpDataModel
+    private let encoder = WWWFormRequestEncoder()
+
+    init(data: SignUpDataModel) {
+        self.data = data
+    }
+
+    // MARK: - EndpointDescriptor
+
+    let path: String = "auth/sign_up"
+    let method: HTTPMethod = .post
+
+    var headers: HTTPHeaders {
+        return ["Content-Type": "application/x-www-form-urlencoded"]
+    }
+
+    var customEncoder: NetworkRequestEncoding? {
+        return encoder
+    }
+
+    var params: [String: Any]? {
+        return data.toJSON()
+    }
+
+    var authRequired: Bool {
+        return false
+    }
+
+}
 
 ```
 
-- then you should run this from the root folder
+#### 3 - Send request (generic or plain request)
 
 ```
-carthage bootstrap --platform ios --no-use-binaries --cache-builds
+            let endpoint = SignUpEndpoint(data: data)
+            var task: URLSessionDataTask?
 
-```
+            let completion: ((Result<T, NetworkError>) -> Void) = { result in
+                switch result {
+                case .success(let model):
+                    // do smth with model
+                    print(model)
+                case .failure(let error):
+                    // do smth with error
+                    print(error)
+                }
+            }
 
-```
-carthage update --platform ios --no-use-binaries --cache-builds
+            do {
+                task = try networkClient.sendRequest(endpoint: endpoint, completion: completion)
+            } catch {
+                // catch validation, coding errors
+                print(error)
+            }
 ```
