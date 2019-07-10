@@ -1,6 +1,6 @@
 ### Network-iOS framework
 
-`No dendencies, just plain URLSession`
+`No dendencies, just a plain URLSession`
 
 `Swift 5+`
 
