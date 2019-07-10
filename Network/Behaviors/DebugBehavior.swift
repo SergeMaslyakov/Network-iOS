@@ -24,9 +24,11 @@ public final class DebugBehavior: NetworkRequestBehavior {
             bodyStr = "null"
         }
 
+        let date = Date()
+        let fract = date.timeIntervalSince1970 - TimeInterval(Int(date.timeIntervalSince1970))
         let log = """
         \n******** BEGIN REQUEST LOG ********
-          TS:       \(Date())
+          TS:       \(date) + \(fract)
           URL:      \(request.url?.absoluteString ?? "null")
           Method:   \(request.httpMethod ?? "null")
           Headers:  \(allHeaders)
@@ -53,9 +55,11 @@ public final class DebugBehavior: NetworkRequestBehavior {
             bodyStr = "null"
         }
 
+        let date = Date()
+        let fract = date.timeIntervalSince1970 - TimeInterval(Int(date.timeIntervalSince1970))
         let log = """
         \n******** BEGIN RESPONSE LOG ********
-          TS:       \(Date())
+          TS:       \(date) + \(fract)
           URL:      \(response.url?.absoluteString ?? "null")
           Code:     \(statusCode) (\(HTTPURLResponse.localizedString(forStatusCode: statusCode)))
           Headers:  \(headers)

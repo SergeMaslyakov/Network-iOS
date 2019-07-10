@@ -4,8 +4,8 @@ extension URLRequest {
 
     var containsJSONContent: Bool {
         if let headers = allHTTPHeaderFields {
-            if let value = headers["Content-Type"] {
-                return value.contains("application/json")
+            if let value = headers[ConstantsKeys.contentType] {
+                return value.contains(ConstantsKeys.applicationJSON)
             }
         }
 
@@ -14,8 +14,8 @@ extension URLRequest {
 
     var containsXWWWFormContent: Bool {
         if let headers = allHTTPHeaderFields {
-            if let value = headers["Content-Type"] {
-                return value.contains("x-www-form-urlencoded")
+            if let value = headers[ConstantsKeys.contentType] {
+                return value.contains(ConstantsKeys.wwwWFormUrlencoded)
             }
         }
 
@@ -24,7 +24,7 @@ extension URLRequest {
 
     var containsTextContent: Bool {
         if let headers = allHTTPHeaderFields {
-            if let value = headers["Content-Type"] {
+            if let value = headers[ConstantsKeys.contentType] {
                 return value.contains("text")
             }
         }
