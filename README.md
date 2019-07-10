@@ -1,14 +1,19 @@
 ### Network-iOS framework
 
+`No dendencies, just plain URLSession`
+
+`Swift 5+`
+
 How to:
 
 #### 1 - Create an instance of NetworkClient, smth like that
 
 ```
+
 let configuration = NetworkLayer.Configuration(timeout: 10,
                                                baseURL: "https://github.com",
                                                sessionDelegate: sessionDelegateProvider,
-                                               authProvider: O2AuthProvider(),
+                                               authProvider: DefaultAuthorizationProvider(),
                                                responseDecoder: JSONResponseDecoder(),
                                                requestEncoder: JSONResponseEncoder(),
                                                defaultBehaviors: [DebugBehavior(logger: logger)])
