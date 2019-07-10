@@ -7,10 +7,10 @@ APPLICATION_EXTENSION_API_ONLY = NO;
 DYLIB_COMPATIBILITY_VERSION = 1
 DYLIB_CURRENT_VERSION = 1
 DYLIB_INSTALL_NAME_BASE = @rpath
-LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/../Carthage/Build/iOS
+LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/Frameworks @loader_path/Frameworks
 
 // Search Paths
-FRAMEWORK_SEARCH_PATHS = $(inherited) $(PROJECT_DIR)/../Carthage/Build/iOS
+FRAMEWORK_SEARCH_PATHS = $(inherited)
 
 // Packing
 DEFINES_MODULE = YES

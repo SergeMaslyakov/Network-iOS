@@ -3,6 +3,11 @@ import Foundation
 public final class DebugBehavior: NetworkRequestBehavior {
 
     private let logger: NetworkLogger
+    private lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter
+    }()
 
     public init(logger: NetworkLogger) {
         self.logger = logger
@@ -24,9 +29,11 @@ public final class DebugBehavior: NetworkRequestBehavior {
             bodyStr = "null"
         }
 
+        let date = Date()
+        let fract = Int((date.timeIntervalSince1970 - TimeInterval(Int(date.timeIntervalSince1970)))*1000)
         let log = """
         \n******** BEGIN REQUEST LOG ********
-          TS:       \(Date())
+          TS:       \(dateFormatter.string(from: date)).\(fract)
           URL:      \(request.url?.absoluteString ?? "null")
           Method:   \(request.httpMethod ?? "null")
           Headers:  \(allHeaders)
@@ -53,9 +60,11 @@ public final class DebugBehavior: NetworkRequestBehavior {
             bodyStr = "null"
         }
 
+        let date = Date()
+        let fract = Int((date.timeIntervalSince1970 - TimeInterval(Int(date.timeIntervalSince1970)))*1000)
         let log = """
         \n******** BEGIN RESPONSE LOG ********
-          TS:       \(Date())
+          TS:       \(dateFormatter.string(from: date)).\(fract)
           URL:      \(response.url?.absoluteString ?? "null")
           Code:     \(statusCode) (\(HTTPURLResponse.localizedString(forStatusCode: statusCode)))
           Headers:  \(headers)

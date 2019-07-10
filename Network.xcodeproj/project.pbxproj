@@ -26,21 +26,13 @@
 		955DD36822C20AB70031AD92 /* DefaultAuthorizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD34522C20AB70031AD92 /* DefaultAuthorizationProvider.swift */; };
 		955DD36922C20AB70031AD92 /* AuthorizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD34622C20AB70031AD92 /* AuthorizationProvider.swift */; };
 		955DD36A22C20AB70031AD92 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD34722C20AB70031AD92 /* NetworkError.swift */; };
-		955DD36B22C20AB70031AD92 /* NetworkClient+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD34922C20AB70031AD92 /* NetworkClient+Rx.swift */; };
 		955DD36C22C20AB70031AD92 /* HTTPStatusCodes+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD34C22C20AB70031AD92 /* HTTPStatusCodes+Extensions.swift */; };
 		955DD36E22C20AB70031AD92 /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD34E22C20AB70031AD92 /* HTTPStatusCodes.swift */; };
 		955DD36F22C20BDA0031AD92 /* Network.h in Headers */ = {isa = PBXBuildFile; fileRef = 955DD33322C20AB70031AD92 /* Network.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		957FE6F422C2140400A11BC2 /* NetworkLoger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957FE6F322C2140400A11BC2 /* NetworkLoger.swift */; };
 		957FE70322C214CA00A11BC2 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957FE6FE22C214CA00A11BC2 /* NetworkTests.swift */; };
-		DA9ECB4C2243190100EDAF4A /* RxGesture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9ECB422243190000EDAF4A /* RxGesture.framework */; };
-		DA9ECB4D2243190100EDAF4A /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9ECB432243190100EDAF4A /* RxBlocking.framework */; };
-		DA9ECB4E2243190100EDAF4A /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9ECB442243190100EDAF4A /* RxSwift.framework */; };
-		DA9ECB502243190100EDAF4A /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9ECB462243190100EDAF4A /* RxCocoa.framework */; };
-		DA9ECB522243190100EDAF4A /* RxKeyboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9ECB482243190100EDAF4A /* RxKeyboard.framework */; };
-		DA9ECB532243190100EDAF4A /* RxSwiftExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9ECB492243190100EDAF4A /* RxSwiftExt.framework */; };
-		DA9ECB612243841500EDAF4A /* RxSwiftUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA9ECB5F2243841500EDAF4A /* RxSwiftUtilities.framework */; };
+		95A7656222D5D1A6008658AA /* ConstantsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A7656122D5D1A6008658AA /* ConstantsKeys.swift */; };
 		E0FD11E721477A5F008C2EF8 /* NetworkFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0FD11DD21477A5F008C2EF8 /* NetworkFramework.framework */; };
-		FB0ED137228B55CD00D4F033 /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB0ED136228B55CD00D4F033 /* RxRelay.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,23 +74,15 @@
 		955DD34522C20AB70031AD92 /* DefaultAuthorizationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultAuthorizationProvider.swift; sourceTree = "<group>"; };
 		955DD34622C20AB70031AD92 /* AuthorizationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationProvider.swift; sourceTree = "<group>"; };
 		955DD34722C20AB70031AD92 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
-		955DD34922C20AB70031AD92 /* NetworkClient+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NetworkClient+Rx.swift"; sourceTree = "<group>"; };
 		955DD34C22C20AB70031AD92 /* HTTPStatusCodes+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPStatusCodes+Extensions.swift"; sourceTree = "<group>"; };
 		955DD34D22C20AB70031AD92 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		955DD34E22C20AB70031AD92 /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCodes.swift; sourceTree = "<group>"; };
 		957FE6F322C2140400A11BC2 /* NetworkLoger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoger.swift; sourceTree = "<group>"; };
 		957FE6F722C214CA00A11BC2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		957FE6FE22C214CA00A11BC2 /* NetworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
-		DA9ECB422243190000EDAF4A /* RxGesture.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxGesture.framework; path = ../Carthage/Build/iOS/RxGesture.framework; sourceTree = "<group>"; };
-		DA9ECB432243190100EDAF4A /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = ../Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
-		DA9ECB442243190100EDAF4A /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
-		DA9ECB462243190100EDAF4A /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = ../Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
-		DA9ECB482243190100EDAF4A /* RxKeyboard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxKeyboard.framework; path = ../Carthage/Build/iOS/RxKeyboard.framework; sourceTree = "<group>"; };
-		DA9ECB492243190100EDAF4A /* RxSwiftExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwiftExt.framework; path = ../Carthage/Build/iOS/RxSwiftExt.framework; sourceTree = "<group>"; };
-		DA9ECB5F2243841500EDAF4A /* RxSwiftUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwiftUtilities.framework; path = ../Carthage/Build/iOS/RxSwiftUtilities.framework; sourceTree = "<group>"; };
+		95A7656122D5D1A6008658AA /* ConstantsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsKeys.swift; sourceTree = "<group>"; };
 		E0FD11DD21477A5F008C2EF8 /* NetworkFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0FD11E621477A5F008C2EF8 /* NetworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB0ED136228B55CD00D4F033 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = ../Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,14 +90,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA9ECB612243841500EDAF4A /* RxSwiftUtilities.framework in Frameworks */,
-				DA9ECB4E2243190100EDAF4A /* RxSwift.framework in Frameworks */,
-				FB0ED137228B55CD00D4F033 /* RxRelay.framework in Frameworks */,
-				DA9ECB502243190100EDAF4A /* RxCocoa.framework in Frameworks */,
-				DA9ECB532243190100EDAF4A /* RxSwiftExt.framework in Frameworks */,
-				DA9ECB522243190100EDAF4A /* RxKeyboard.framework in Frameworks */,
-				DA9ECB4C2243190100EDAF4A /* RxGesture.framework in Frameworks */,
-				DA9ECB4D2243190100EDAF4A /* RxBlocking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +110,7 @@
 				955DD34322C20AB70031AD92 /* NetworkClientImpl.swift */,
 				955DD32522C20AB70031AD92 /* NetworkClient.swift */,
 				955DD34722C20AB70031AD92 /* NetworkError.swift */,
+				95A7656122D5D1A6008658AA /* ConstantsKeys.swift */,
 				955DD33322C20AB70031AD92 /* Network.h */,
 				955DD32622C20AB70031AD92 /* Configurations */,
 				955DD33022C20AB70031AD92 /* Extensions */,
@@ -141,7 +118,6 @@
 				955DD33822C20AB70031AD92 /* Endpoint */,
 				955DD33A22C20AB70031AD92 /* Coding */,
 				955DD34422C20AB70031AD92 /* Authorization */,
-				955DD34822C20AB70031AD92 /* Rx */,
 				955DD34A22C20AB70031AD92 /* Thirdparty */,
 			);
 			path = Network;
@@ -222,14 +198,6 @@
 			path = Authorization;
 			sourceTree = "<group>";
 		};
-		955DD34822C20AB70031AD92 /* Rx */ = {
-			isa = PBXGroup;
-			children = (
-				955DD34922C20AB70031AD92 /* NetworkClient+Rx.swift */,
-			);
-			path = Rx;
-			sourceTree = "<group>";
-		};
 		955DD34A22C20AB70031AD92 /* Thirdparty */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,14 +236,6 @@
 		E0C82F27214789D8009EA559 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FB0ED136228B55CD00D4F033 /* RxRelay.framework */,
-				DA9ECB5F2243841500EDAF4A /* RxSwiftUtilities.framework */,
-				DA9ECB432243190100EDAF4A /* RxBlocking.framework */,
-				DA9ECB462243190100EDAF4A /* RxCocoa.framework */,
-				DA9ECB422243190000EDAF4A /* RxGesture.framework */,
-				DA9ECB482243190100EDAF4A /* RxKeyboard.framework */,
-				DA9ECB442243190100EDAF4A /* RxSwift.framework */,
-				DA9ECB492243190100EDAF4A /* RxSwiftExt.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -416,9 +376,9 @@
 				955DD35D22C20AB70031AD92 /* QueryInjectingBehavior.swift in Sources */,
 				957FE6F422C2140400A11BC2 /* NetworkLoger.swift in Sources */,
 				955DD35922C20AB70031AD92 /* HTTPURLResponse+Helpers.swift in Sources */,
+				95A7656222D5D1A6008658AA /* ConstantsKeys.swift in Sources */,
 				955DD36522C20AB70031AD92 /* NetworkResponseDecoding.swift in Sources */,
 				955DD36022C20AB70031AD92 /* JSONRequestEncoder.swift in Sources */,
-				955DD36B22C20AB70031AD92 /* NetworkClient+Rx.swift in Sources */,
 				955DD36E22C20AB70031AD92 /* HTTPStatusCodes.swift in Sources */,
 				955DD35E22C20AB70031AD92 /* EndpointDescriptor.swift in Sources */,
 				955DD36622C20AB70031AD92 /* CodingError.swift in Sources */,
@@ -478,11 +438,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Network/Configurations/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.network.ios;
 				SWIFT_VERSION = 5.0;
 			};
@@ -532,11 +494,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Network/Configurations/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.network.ios;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;

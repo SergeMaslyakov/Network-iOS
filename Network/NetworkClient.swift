@@ -81,14 +81,14 @@ extension NetworkClient {
         headers.forEach { data in
             urlRequest.setValue(data.value, forHTTPHeaderField: data.key)
         }
-        urlRequest.setValue("0", forHTTPHeaderField: "Content-Length")
+        urlRequest.setValue("0", forHTTPHeaderField: ConstantsKeys.contentLength)
 
         /// Body
         if let params = endpoint.params {
             do {
                 let body = try encoder.encode(params: params)
                 urlRequest.httpBody = body
-                urlRequest.setValue("\(body.count)", forHTTPHeaderField: "Content-Length")
+                urlRequest.setValue("\(body.count)", forHTTPHeaderField: ConstantsKeys.contentLength)
             } catch {
                 throw NetworkError.encodingError(error)
             }
@@ -108,7 +108,7 @@ extension NetworkClient {
                           _ behaviours: [NetworkRequestBehavior],
                           existingComponents: URLComponents?) -> URLComponents? {
 
-        let queries = behaviours.map { $0.additionalQueries }.reduce([], +) + endpoint.queries
+        let queries = behaviours.map { $0.additionalQueries }.reduce([], +) + endpoint.queries + endpoint.duplicationQueries
 
         if !queries.isEmpty {
             var components = existingComponents ?? URLComponents()
