@@ -33,7 +33,7 @@ public final class DebugBehavior: NetworkRequestBehavior {
         let fract = Int((date.timeIntervalSince1970 - TimeInterval(Int(date.timeIntervalSince1970)))*1000)
         let log = """
         \n******** BEGIN REQUEST LOG ********
-          TS:       \(dateFormatter.string(from: date))+\(fract)
+          TS:       \(dateFormatter.string(from: date)).\(fract)
           URL:      \(request.url?.absoluteString ?? "null")
           Method:   \(request.httpMethod ?? "null")
           Headers:  \(allHeaders)
@@ -64,7 +64,7 @@ public final class DebugBehavior: NetworkRequestBehavior {
         let fract = Int((date.timeIntervalSince1970 - TimeInterval(Int(date.timeIntervalSince1970)))*1000)
         let log = """
         \n******** BEGIN RESPONSE LOG ********
-          TS:       \(dateFormatter.string(from: date))+\(fract)
+          TS:       \(dateFormatter.string(from: date)).\(fract)
           URL:      \(response.url?.absoluteString ?? "null")
           Code:     \(statusCode) (\(HTTPURLResponse.localizedString(forStatusCode: statusCode)))
           Headers:  \(headers)
