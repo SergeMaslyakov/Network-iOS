@@ -79,16 +79,8 @@
 		957FE6F322C2140400A11BC2 /* NetworkLoger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoger.swift; sourceTree = "<group>"; };
 		957FE6F722C214CA00A11BC2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		957FE6FE22C214CA00A11BC2 /* NetworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
-		DA9ECB422243190000EDAF4A /* RxGesture.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxGesture.framework; path = ../Carthage/Build/iOS/RxGesture.framework; sourceTree = "<group>"; };
-		DA9ECB432243190100EDAF4A /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = ../Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
-		DA9ECB442243190100EDAF4A /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = ../Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
-		DA9ECB462243190100EDAF4A /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = ../Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
-		DA9ECB482243190100EDAF4A /* RxKeyboard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxKeyboard.framework; path = ../Carthage/Build/iOS/RxKeyboard.framework; sourceTree = "<group>"; };
-		DA9ECB492243190100EDAF4A /* RxSwiftExt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwiftExt.framework; path = ../Carthage/Build/iOS/RxSwiftExt.framework; sourceTree = "<group>"; };
-		DA9ECB5F2243841500EDAF4A /* RxSwiftUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwiftUtilities.framework; path = ../Carthage/Build/iOS/RxSwiftUtilities.framework; sourceTree = "<group>"; };
 		E0FD11DD21477A5F008C2EF8 /* NetworkFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0FD11E621477A5F008C2EF8 /* NetworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB0ED136228B55CD00D4F033 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = ../Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,14 +233,6 @@
 		E0C82F27214789D8009EA559 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FB0ED136228B55CD00D4F033 /* RxRelay.framework */,
-				DA9ECB5F2243841500EDAF4A /* RxSwiftUtilities.framework */,
-				DA9ECB432243190100EDAF4A /* RxBlocking.framework */,
-				DA9ECB462243190100EDAF4A /* RxCocoa.framework */,
-				DA9ECB422243190000EDAF4A /* RxGesture.framework */,
-				DA9ECB482243190100EDAF4A /* RxKeyboard.framework */,
-				DA9ECB442243190100EDAF4A /* RxSwift.framework */,
-				DA9ECB492243190100EDAF4A /* RxSwiftExt.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
