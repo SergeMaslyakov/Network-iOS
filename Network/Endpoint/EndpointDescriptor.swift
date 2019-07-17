@@ -30,6 +30,8 @@ public protocol EndpointDescriptor {
 
     var keyPath: String? { get }
 
+    var fileName: String { get }
+
 }
 
 public extension EndpointDescriptor {
@@ -60,6 +62,10 @@ public extension EndpointDescriptor {
 
     var keyPath: String? {
         return nil
+    }
+
+    var fileName: String {
+        return UUID().uuidString
     }
 
     var authRequired: Bool {

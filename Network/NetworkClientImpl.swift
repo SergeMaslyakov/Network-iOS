@@ -95,4 +95,60 @@ public class NetworkClientImpl: NetworkClient {
 
         return task
     }
+
+    public func downloadTask(endpoint: EndpointDescriptor, sendImmediately: Bool,
+                             completion: @escaping (Result<URL, NetworkError>) -> Void) throws -> URLSessionDownloadTask {
+        let encoder = endpoint.customEncoder ?? requestEncoder
+        let request = try assembleURLRequest(for: endpoint,
+                                             with: baseURL,
+                                             encoder,
+                                             authProvider,
+                                             defaultBehaviors,
+                                             timeout)
+
+        /// Before send hook
+        defaultBehaviors.forEach {
+            $0.willSend(request: request, session: urlSession)
+        }
+
+        let task = urlSession.downloadTask(with: request) { [weak self] (url, response, error) in
+            guard let self = self else { return }
+
+            guard error == nil, let response = response as? HTTPURLResponse, let url = url else {
+                self.processTaskError(error: error, completion: completion)
+                return
+            }
+
+            let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let destinationURL = documentsPath.appendingPathComponent(endpoint.fileName)
+
+            /// to delete a file with the same name if needed
+            try? FileManager.default.removeItem(at: destinationURL)
+
+            var localURL: URL?
+
+            do {
+                /// move file to document directory
+                try FileManager.default.copyItem(at: url, to: destinationURL)
+                localURL = destinationURL
+            } catch let error {
+                self.processTaskError(error: error, completion: completion)
+                return
+            }
+
+            /// Did receive hook
+            self.defaultBehaviors.forEach {
+                $0.didReceive(response: response, data: nil, request: request)
+            }
+
+            self.validate(request: request, response: response, fileURL: localURL, completion)
+
+        }
+
+        if sendImmediately {
+            task.resume()
+        }
+
+        return task
+    }
 }

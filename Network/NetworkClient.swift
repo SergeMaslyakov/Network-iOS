@@ -51,6 +51,9 @@ public protocol NetworkClient {
 
     func sendRequest(endpoint: EndpointDescriptor, sendImmediately: Bool,
                      completion: @escaping (Result<Data?, NetworkError>) -> Void) throws -> URLSessionDataTask
+
+    func downloadTask(endpoint: EndpointDescriptor, sendImmediately: Bool,
+                      completion: @escaping (Result<URL, NetworkError>) -> Void) throws -> URLSessionDownloadTask
 }
 
 // swiftlint:disable function_parameter_count
@@ -158,6 +161,24 @@ extension NetworkClient {
             }
         } else {
             completion(.success(data))
+        }
+    }
+
+    func validate(request: URLRequest,
+                  response: HTTPURLResponse,
+                  fileURL: URL?,
+                  _ completion: @escaping (Result<URL, NetworkError>) -> Void) {
+
+        let statusCode = HTTPStatusCode(rawValue: response.statusCode) ?? .badResponse
+
+        if !statusCode.isSuccess {
+            completion(.failure(.httpError(statusCode)))
+        } else {
+            if let url = fileURL {
+                completion(.success(url))
+            } else {
+                completion(.failure(.invalidData))
+            }
         }
     }
 
