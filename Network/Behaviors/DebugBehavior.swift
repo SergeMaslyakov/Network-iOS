@@ -3,6 +3,7 @@ import Foundation
 public final class DebugBehavior: NetworkRequestBehavior {
 
     private let logger: NetworkLogger
+
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"

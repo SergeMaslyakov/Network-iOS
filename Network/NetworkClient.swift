@@ -111,7 +111,7 @@ extension NetworkClient {
                           _ behaviours: [NetworkRequestBehavior],
                           existingComponents: URLComponents?) -> URLComponents? {
 
-        let queries = behaviours.map { $0.additionalQueries }.reduce([], +) + endpoint.queries + endpoint.duplicationQueries
+        let queries = behaviours.map { $0.additionalQueries }.reduce([], +) + endpoint.queries
 
         if !queries.isEmpty {
             var components = existingComponents ?? URLComponents()
@@ -128,11 +128,13 @@ extension NetworkClient {
 
     func processTaskError<T>(error: Error?, completion: @escaping ((Result<T, NetworkError>) -> Void)) {
         let responseError: NetworkError
+
         if let error = error {
             responseError = .underlyingError(error)
         } else {
             responseError = .invalidResponse
         }
+
         completion(.failure(responseError))
     }
 
@@ -171,14 +173,14 @@ extension NetworkClient {
 
         let statusCode = HTTPStatusCode(rawValue: response.statusCode) ?? .badResponse
 
-        if !statusCode.isSuccess {
-            completion(.failure(.httpError(statusCode)))
-        } else {
+        if statusCode.isSuccess {
             if let url = fileURL {
                 completion(.success(url))
             } else {
                 completion(.failure(.invalidData))
             }
+        } else {
+            completion(.failure(.httpError(statusCode)))
         }
     }
 
