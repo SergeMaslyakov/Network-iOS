@@ -15,7 +15,7 @@ extension HTTPURLResponse {
     var containsXWWWFormContent: Bool {
         if let headers = allHeaderFields as? [String: String] {
             if let value = headers[ConstantsKeys.contentType] {
-                return value.contains(ConstantsKeys.wwwWFormUrlencoded)
+                return value.contains(ConstantsKeys.wwwFormUrlencoded)
             }
         }
 
