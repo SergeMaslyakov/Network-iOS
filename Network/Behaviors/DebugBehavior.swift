@@ -110,7 +110,7 @@ public final class DebugBehavior: NetworkRequestBehavior {
 
         return DebugData(ts: timestamp,
                          url: "\(response.url?.absoluteString ?? "null")",
-                         code: "\(statusCode) (\(HTTPURLResponse.localizedString(forStatusCode: statusCode))",
+                         code: "\(statusCode) (\(HTTPURLResponse.localizedString(forStatusCode: statusCode)))",
                          method: "",
                          headers: "\(headers)",
                          body: "\(bodyStr.trimmingCharacters(in: .whitespacesAndNewlines))")
