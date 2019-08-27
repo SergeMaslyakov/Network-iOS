@@ -33,7 +33,7 @@ public final class DebugBehavior: NetworkRequestBehavior {
 
     public func willSend(request: URLRequest, session: URLSession) {
         let data = extractSentData(request: request, session: session)
-        let truncated = data.body.count > bodyMaxLength ? " ...truncated" : ""
+        let truncated = data.body.count > bodyMaxLength ? " ...truncated(\(data.body.count) >> \(bodyMaxLength))" : ""
 
         let log = """
         \n******** BEGIN REQUEST LOG ********
@@ -51,7 +51,7 @@ public final class DebugBehavior: NetworkRequestBehavior {
 
     public func didReceive(response: HTTPURLResponse, data: Data?, request: URLRequest) {
         let data = extractReceivedData(response: response, data: data, request: request)
-        let truncated = data.body.count > bodyMaxLength ? " ...truncated" : ""
+        let truncated = data.body.count > bodyMaxLength ? " ...truncated(\(data.body.count) >> \(bodyMaxLength))" : ""
 
         let log = """
         \n******** BEGIN RESPONSE LOG ********
