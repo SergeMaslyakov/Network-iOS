@@ -2,6 +2,16 @@ import Foundation
 
 public final class DebugBehavior: NetworkRequestBehavior {
 
+    struct DebugData {
+        let ts: String
+        let url: String
+        let code: String
+        let method: String
+        let headers: String
+        let body: String
+    }
+
+    private let bodyMaxLength: Int
     private let logger: NetworkLogger
 
     private lazy var dateFormatter: DateFormatter = {
@@ -10,11 +20,56 @@ public final class DebugBehavior: NetworkRequestBehavior {
         return formatter
     }()
 
-    public init(logger: NetworkLogger) {
+    private var timestamp: String {
+        let date = Date()
+        let fract = Int((date.timeIntervalSince1970 - TimeInterval(Int(date.timeIntervalSince1970)))*1000)
+        return "\(dateFormatter.string(from: date)).\(fract)"
+    }
+
+    public init(logger: NetworkLogger, bodyMaxLength: Int = Int.max) {
         self.logger = logger
+        self.bodyMaxLength = max(0, bodyMaxLength)
     }
 
     public func willSend(request: URLRequest, session: URLSession) {
+        let data = extractSentData(request: request, session: session)
+        let truncated = data.body.count > bodyMaxLength ? " ...truncated" : ""
+
+        let log = """
+        \n******** BEGIN REQUEST LOG ********
+          TS:       \(data.ts)
+          URL:      \(data.url)
+          Method:   \(data.method)
+          Headers:  \(data.headers)
+          Body:     \(String(data.body.prefix(bodyMaxLength)) + truncated)
+        ******** END REQUEST LOG **********
+
+        """
+
+        logger.verbose(log)
+    }
+
+    public func didReceive(response: HTTPURLResponse, data: Data?, request: URLRequest) {
+        let data = extractReceivedData(response: response, data: data, request: request)
+        let truncated = data.body.count > bodyMaxLength ? " ...truncated" : ""
+
+        let log = """
+        \n******** BEGIN RESPONSE LOG ********
+          TS:       \(data.ts)
+          URL:      \(data.url)
+          Code:     \(data.code)
+          Headers:  \(data.headers)
+          Body:     \(String(data.body.prefix(bodyMaxLength)) + truncated)
+        ******** END RESPONSE LOG **********
+
+        """
+
+        logger.verbose(log)
+    }
+
+    // MARK: - Helpers
+
+    func extractSentData(request: URLRequest, session: URLSession) -> DebugData {
         let defaultHeaders = (session.configuration.httpAdditionalHeaders as? [String: String]) ?? [:]
         let requestHeaders = request.allHTTPHeaderFields ?? [:]
         let allHeaders = requestHeaders.merging(defaultHeaders, uniquingKeysWith: { f, _ in f })
@@ -30,23 +85,15 @@ public final class DebugBehavior: NetworkRequestBehavior {
             bodyStr = "null"
         }
 
-        let date = Date()
-        let fract = Int((date.timeIntervalSince1970 - TimeInterval(Int(date.timeIntervalSince1970)))*1000)
-        let log = """
-        \n******** BEGIN REQUEST LOG ********
-          TS:       \(dateFormatter.string(from: date)).\(fract)
-          URL:      \(request.url?.absoluteString ?? "null")
-          Method:   \(request.httpMethod ?? "null")
-          Headers:  \(allHeaders)
-          Body:     \(bodyStr.trimmingCharacters(in: .whitespacesAndNewlines))
-        ******** END REQUEST LOG **********
-
-        """
-
-        logger.verbose(log)
+        return DebugData(ts: timestamp,
+                         url: "\(request.url?.absoluteString ?? "null")",
+                         code: "",
+                         method: "\(request.httpMethod ?? "null")",
+                         headers: "\(allHeaders)",
+                         body: "\(bodyStr.trimmingCharacters(in: .whitespacesAndNewlines))")
     }
 
-    public func didReceive(response: HTTPURLResponse, data: Data?, request: URLRequest) {
+    func extractReceivedData(response: HTTPURLResponse, data: Data?, request: URLRequest) -> DebugData {
         let headers: [String: String] = (response.allHeaderFields as? [String: String]) ?? [:]
         let statusCode = response.statusCode
         let bodyStr: String
@@ -61,19 +108,11 @@ public final class DebugBehavior: NetworkRequestBehavior {
             bodyStr = "null"
         }
 
-        let date = Date()
-        let fract = Int((date.timeIntervalSince1970 - TimeInterval(Int(date.timeIntervalSince1970)))*1000)
-        let log = """
-        \n******** BEGIN RESPONSE LOG ********
-          TS:       \(dateFormatter.string(from: date)).\(fract)
-          URL:      \(response.url?.absoluteString ?? "null")
-          Code:     \(statusCode) (\(HTTPURLResponse.localizedString(forStatusCode: statusCode)))
-          Headers:  \(headers)
-          Body:     \(bodyStr.trimmingCharacters(in: .whitespacesAndNewlines))
-        ******** END RESPONSE LOG **********
-
-        """
-
-        logger.verbose(log)
+        return DebugData(ts: timestamp,
+                         url: "\(response.url?.absoluteString ?? "null")",
+                         code: "\(statusCode) (\(HTTPURLResponse.localizedString(forStatusCode: statusCode))",
+                         method: "",
+                         headers: "\(headers)",
+                         body: "\(bodyStr.trimmingCharacters(in: .whitespacesAndNewlines))")
     }
 }
