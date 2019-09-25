@@ -4,6 +4,13 @@
 
 `Swift 5+`
 
+
+### Installation
+
+1) as carthage dependency: add in cartfile `github "SergeMaslyakov/Network-iOS"`
+2) as submodule in the project: to add in your workspace as a sub-project
+
+
 How to:
 
 #### 1 - Create an instance of NetworkClient, smth like that
