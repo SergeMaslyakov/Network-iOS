@@ -111,7 +111,7 @@ extension NetworkClient {
                           _ behaviours: [NetworkRequestBehavior],
                           existingComponents: URLComponents?) -> URLComponents? {
 
-        let queries = behaviours.map { $0.additionalQueries }.reduce([], +) + endpoint.queries + endpoint.duplicationQueries
+        let queries = behaviours.map { $0.additionalQueries }.reduce([], +) + endpoint.queries
 
         if !queries.isEmpty {
             var components = existingComponents ?? URLComponents()
