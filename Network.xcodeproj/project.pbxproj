@@ -12,7 +12,6 @@
 		955DD35922C20AB70031AD92 /* HTTPURLResponse+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD33222C20AB70031AD92 /* HTTPURLResponse+Helpers.swift */; };
 		955DD35B22C20AB70031AD92 /* NetworkRequestBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD33522C20AB70031AD92 /* NetworkRequestBehavior.swift */; };
 		955DD35C22C20AB70031AD92 /* DebugBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD33622C20AB70031AD92 /* DebugBehavior.swift */; };
-		955DD35D22C20AB70031AD92 /* QueryInjectingBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD33722C20AB70031AD92 /* QueryInjectingBehavior.swift */; };
 		955DD35E22C20AB70031AD92 /* EndpointDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD33922C20AB70031AD92 /* EndpointDescriptor.swift */; };
 		955DD35F22C20AB70031AD92 /* WWWFormRequestEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD33B22C20AB70031AD92 /* WWWFormRequestEncoder.swift */; };
 		955DD36022C20AB70031AD92 /* JSONRequestEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD33C22C20AB70031AD92 /* JSONRequestEncoder.swift */; };
@@ -60,7 +59,6 @@
 		955DD33322C20AB70031AD92 /* Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Network.h; sourceTree = "<group>"; };
 		955DD33522C20AB70031AD92 /* NetworkRequestBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequestBehavior.swift; sourceTree = "<group>"; };
 		955DD33622C20AB70031AD92 /* DebugBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugBehavior.swift; sourceTree = "<group>"; };
-		955DD33722C20AB70031AD92 /* QueryInjectingBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryInjectingBehavior.swift; sourceTree = "<group>"; };
 		955DD33922C20AB70031AD92 /* EndpointDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndpointDescriptor.swift; sourceTree = "<group>"; };
 		955DD33B22C20AB70031AD92 /* WWWFormRequestEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WWWFormRequestEncoder.swift; sourceTree = "<group>"; };
 		955DD33C22C20AB70031AD92 /* JSONRequestEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONRequestEncoder.swift; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 			children = (
 				955DD33522C20AB70031AD92 /* NetworkRequestBehavior.swift */,
 				955DD33622C20AB70031AD92 /* DebugBehavior.swift */,
-				955DD33722C20AB70031AD92 /* QueryInjectingBehavior.swift */,
 				957FE6F322C2140400A11BC2 /* NetworkLoger.swift */,
 			);
 			path = Behaviors;
@@ -373,7 +370,6 @@
 				955DD36922C20AB70031AD92 /* AuthorizationProvider.swift in Sources */,
 				955DD35F22C20AB70031AD92 /* WWWFormRequestEncoder.swift in Sources */,
 				955DD36122C20AB70031AD92 /* JSONResponseDecoder.swift in Sources */,
-				955DD35D22C20AB70031AD92 /* QueryInjectingBehavior.swift in Sources */,
 				957FE6F422C2140400A11BC2 /* NetworkLoger.swift in Sources */,
 				955DD35922C20AB70031AD92 /* HTTPURLResponse+Helpers.swift in Sources */,
 				95A7656222D5D1A6008658AA /* ConstantsKeys.swift in Sources */,
@@ -421,7 +417,7 @@
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -477,7 +473,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;

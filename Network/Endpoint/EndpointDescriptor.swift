@@ -4,11 +4,11 @@ public typealias HTTPHeaders = [String: String]
 public typealias URLQueries = [String: String]
 
 public enum HTTPMethod: String {
-    case get = "GET"
-    case post = "POST"
-    case patch = "PATCH"
-    case put = "PUT"
-    case delete = "DELETE"
+    case get      = "GET"
+    case post     = "POST"
+    case patch    = "PATCH"
+    case put      = "PUT"
+    case delete   = "DELETE"
 }
 
 public protocol EndpointDescriptor {
@@ -21,7 +21,6 @@ public protocol EndpointDescriptor {
 
     var params: [String: Any]? { get }
 
-    var duplicationQueries: URLQueries { get }
     var queries: URLQueries { get }
 
     var headers: HTTPHeaders { get }
@@ -29,6 +28,8 @@ public protocol EndpointDescriptor {
     var authRequired: Bool { get }
 
     var keyPath: String? { get }
+
+    var fileName: String { get }
 
 }
 
@@ -46,10 +47,6 @@ public extension EndpointDescriptor {
         return [:]
     }
 
-    var duplicationQueries: URLQueries {
-        return [:]
-    }
-
     var params: [String: Any]? {
         return nil
     }
@@ -60,6 +57,10 @@ public extension EndpointDescriptor {
 
     var keyPath: String? {
         return nil
+    }
+
+    var fileName: String {
+        return UUID().uuidString
     }
 
     var authRequired: Bool {

@@ -51,6 +51,9 @@ public protocol NetworkClient {
 
     func sendRequest(endpoint: EndpointDescriptor, sendImmediately: Bool,
                      completion: @escaping (Result<Data?, NetworkError>) -> Void) throws -> URLSessionDataTask
+
+    func downloadTask(endpoint: EndpointDescriptor, sendImmediately: Bool,
+                      completion: @escaping (Result<URL, NetworkError>) -> Void) throws -> URLSessionDownloadTask
 }
 
 // swiftlint:disable function_parameter_count
@@ -108,7 +111,7 @@ extension NetworkClient {
                           _ behaviours: [NetworkRequestBehavior],
                           existingComponents: URLComponents?) -> URLComponents? {
 
-        let queries = behaviours.map { $0.additionalQueries }.reduce([], +) + endpoint.queries + endpoint.duplicationQueries
+        let queries = behaviours.map { $0.additionalQueries }.reduce([], +) + endpoint.queries
 
         if !queries.isEmpty {
             var components = existingComponents ?? URLComponents()
@@ -125,11 +128,13 @@ extension NetworkClient {
 
     func processTaskError<T>(error: Error?, completion: @escaping ((Result<T, NetworkError>) -> Void)) {
         let responseError: NetworkError
+
         if let error = error {
             responseError = .underlyingError(error)
         } else {
             responseError = .invalidResponse
         }
+
         completion(.failure(responseError))
     }
 
@@ -158,6 +163,24 @@ extension NetworkClient {
             }
         } else {
             completion(.success(data))
+        }
+    }
+
+    func validate(request: URLRequest,
+                  response: HTTPURLResponse,
+                  fileURL: URL?,
+                  _ completion: @escaping (Result<URL, NetworkError>) -> Void) {
+
+        let statusCode = HTTPStatusCode(rawValue: response.statusCode) ?? .badResponse
+
+        if statusCode.isSuccess {
+            if let url = fileURL {
+                completion(.success(url))
+            } else {
+                completion(.failure(.invalidData))
+            }
+        } else {
+            completion(.failure(.httpError(statusCode)))
         }
     }
 
