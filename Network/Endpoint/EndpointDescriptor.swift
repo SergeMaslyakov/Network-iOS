@@ -21,6 +21,7 @@ public protocol EndpointDescriptor {
 
     var params: [String: Any]? { get }
 
+    var duplicationQueries: URLQueries { get }
     var queries: URLQueries { get }
 
     var headers: HTTPHeaders { get }
@@ -44,6 +45,10 @@ public extension EndpointDescriptor {
     }
 
     var queries: URLQueries {
+        return [:]
+    }
+
+    var duplicationQueries: URLQueries {
         return [:]
     }
 
