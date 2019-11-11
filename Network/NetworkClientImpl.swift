@@ -17,6 +17,7 @@ public class NetworkClientImpl: NetworkClient {
     private let authProvider: AuthorizationProvider
 
     public let urlSession: URLSession
+    public let isBackgroundSession: Bool
     public var sendImmediately: Bool = true
 
     public init(configuration: NetworkLayer.Configuration, sessionConfiguration: URLSessionConfiguration) {
@@ -26,6 +27,7 @@ public class NetworkClientImpl: NetworkClient {
         self.requestEncoder = configuration.requestEncoder
         self.responseDecoder = configuration.responseDecoder
         self.defaultBehaviors = configuration.defaultBehaviors
+        self.isBackgroundSession = configuration.isBackgroundSession
 
         self.urlSession = URLSession(configuration: sessionConfiguration, delegate: configuration.sessionDelegate, delegateQueue: .main)
     }
@@ -33,9 +35,9 @@ public class NetworkClientImpl: NetworkClient {
     // MARK: - NetworkClientProtocol
 
     public func sendRequest<T: Decodable>(endpoint: EndpointDescriptor,
-                                          completion: @escaping (Result<T, NetworkError>) -> Void) throws -> URLSessionDataTask {
+                                          completion: @escaping (Result<T, NetworkError>) -> Void) throws -> NetworkLayer.SessionTaskData {
 
-        let task = try sendRequest(endpoint: endpoint, sendImmediately: false) { [weak self] result in
+        let taskData = try sendRequest(endpoint: endpoint, sendImmediately: false) { [weak self] result in
             guard let self = self else { return }
 
             switch result {
@@ -51,15 +53,17 @@ public class NetworkClientImpl: NetworkClient {
             }
         }
 
-        if sendImmediately {
-            task.resume()
+        defer {
+            if sendImmediately {
+                taskData.task.resume()
+            }
         }
 
-        return task
+        return taskData
     }
 
     public func sendRequest(endpoint: EndpointDescriptor, sendImmediately: Bool,
-                            completion: @escaping (Result<Data?, NetworkError>) -> Void) throws -> URLSessionDataTask {
+                            completion: @escaping (Result<Data?, NetworkError>) -> Void) throws -> NetworkLayer.SessionTaskData {
         let encoder = endpoint.customEncoder ?? requestEncoder
         let request = try assembleURLRequest(for: endpoint,
                                              with: baseURL,
@@ -73,7 +77,7 @@ public class NetworkClientImpl: NetworkClient {
             $0.willSend(request: request, session: urlSession)
         }
 
-        let task = urlSession.dataTask(with: request) { [weak self] (data, response, error) in
+        let completionHandler: ((Data?, URLResponse?, Error?) -> Void) = { [weak self] (data, response, error) in
             guard let self = self else { return }
 
             guard error == nil, let response = response as? HTTPURLResponse else {
@@ -89,15 +93,26 @@ public class NetworkClientImpl: NetworkClient {
             self.validate(request: request, response: response, data: data, completion)
         }
 
-        if sendImmediately {
-            task.resume()
+        let task: URLSessionDataTask
+
+        defer {
+            if sendImmediately {
+                task.resume()
+            }
         }
 
-        return task
+        if isBackgroundSession {
+            // session delegate is responsible for all completion handlers
+            task = urlSession.dataTask(with: request)
+            return NetworkLayer.SessionTaskData(task: task, completionHandler: completionHandler)
+        } else {
+            task = urlSession.dataTask(with: request, completionHandler: completionHandler)
+            return NetworkLayer.SessionTaskData(task: task)
+        }
     }
 
     public func downloadTask(endpoint: EndpointDescriptor, sendImmediately: Bool,
-                             completion: @escaping (Result<URL, NetworkError>) -> Void) throws -> URLSessionDownloadTask {
+                             completion: @escaping (Result<URL, NetworkError>) -> Void) throws -> NetworkLayer.SessionDownloadTaskData {
         let encoder = endpoint.customEncoder ?? requestEncoder
         let request = try assembleURLRequest(for: endpoint,
                                              with: baseURL,
@@ -111,7 +126,7 @@ public class NetworkClientImpl: NetworkClient {
             $0.willSend(request: request, session: urlSession)
         }
 
-        let task = urlSession.downloadTask(with: request) { [weak self] (url, response, error) in
+        let completionHandler: ((URL?, URLResponse?, Error?) -> Void) = { [weak self] (url, response, error) in
             guard let self = self else { return }
 
             guard error == nil, let response = response as? HTTPURLResponse, let url = url else {
@@ -145,10 +160,22 @@ public class NetworkClientImpl: NetworkClient {
 
         }
 
-        if sendImmediately {
-            task.resume()
+        let task: URLSessionDownloadTask
+
+        defer {
+            if sendImmediately {
+                task.resume()
+            }
         }
 
-        return task
+        if isBackgroundSession {
+            // session delegate is responsible for all completion handlers
+            task = urlSession.downloadTask(with: request)
+            return NetworkLayer.SessionDownloadTaskData(task: task, completionHandler: completionHandler)
+        } else {
+            task = urlSession.downloadTask(with: request, completionHandler: completionHandler)
+            return NetworkLayer.SessionDownloadTaskData(task: task)
+        }
+
     }
 }

@@ -16,6 +16,7 @@ public enum NetworkLayer {
         public init(timeout: TimeInterval,
                     baseURL: URL,
                     sessionDelegate: URLSessionDelegate,
+                    isBackgroundSession: Bool,
                     authProvider: AuthorizationProvider,
                     responseDecoder: NetworkResponseDecoding,
                     requestEncoder: NetworkRequestEncoding,
@@ -24,6 +25,7 @@ public enum NetworkLayer {
             self.timeout = timeout
             self.baseURL = baseURL
             self.sessionDelegate = sessionDelegate
+            self.isBackgroundSession = isBackgroundSession
             self.authProvider = authProvider
             self.responseDecoder = responseDecoder
             self.requestEncoder = requestEncoder
@@ -33,27 +35,49 @@ public enum NetworkLayer {
         let timeout: TimeInterval
         let baseURL: URL
         let sessionDelegate: URLSessionDelegate
+        let isBackgroundSession: Bool
         let authProvider: AuthorizationProvider
         let responseDecoder: NetworkResponseDecoding
         let requestEncoder: NetworkRequestEncoding
         let defaultBehaviors: [NetworkRequestBehavior]
     }
     // swiftlint:enable weak_delegate
+
+    public class SessionTaskData {
+        let task: URLSessionDataTask
+        let completionHandler: ((Data?, URLResponse?, Error?) -> Void)?
+
+        public init(task: URLSessionDataTask, completionHandler: ((Data?, URLResponse?, Error?) -> Void)? = nil) {
+            self.task = task
+            self.completionHandler = completionHandler
+        }
+    }
+
+    public class SessionDownloadTaskData {
+        let task: URLSessionDownloadTask
+        let completionHandler: ((URL?, URLResponse?, Error?) -> Void)?
+
+        public init(task: URLSessionDownloadTask, completionHandler: ((URL?, URLResponse?, Error?) -> Void)? = nil) {
+            self.task = task
+            self.completionHandler = completionHandler
+        }
+    }
 }
 
 public protocol NetworkClient {
 
+    var isBackgroundSession: Bool { get }
     var sendImmediately: Bool { get set }
     var urlSession: URLSession { get }
 
     func sendRequest<T: Decodable>(endpoint: EndpointDescriptor,
-                                   completion: @escaping (Result<T, NetworkError>) -> Void) throws -> URLSessionDataTask
+                                   completion: @escaping (Result<T, NetworkError>) -> Void) throws -> NetworkLayer.SessionTaskData
 
     func sendRequest(endpoint: EndpointDescriptor, sendImmediately: Bool,
-                     completion: @escaping (Result<Data?, NetworkError>) -> Void) throws -> URLSessionDataTask
+                     completion: @escaping (Result<Data?, NetworkError>) -> Void) throws -> NetworkLayer.SessionTaskData
 
     func downloadTask(endpoint: EndpointDescriptor, sendImmediately: Bool,
-                      completion: @escaping (Result<URL, NetworkError>) -> Void) throws -> URLSessionDownloadTask
+                      completion: @escaping (Result<URL, NetworkError>) -> Void) throws -> NetworkLayer.SessionDownloadTaskData
 }
 
 // swiftlint:disable function_parameter_count
