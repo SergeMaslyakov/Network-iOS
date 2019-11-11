@@ -48,8 +48,16 @@ open class BackgroundSessionDelegateProvider: NSObject, URLSessionDataDelegate, 
 
     open func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         if let taskData = dataTaskDataHolder.first(where: { $0.key == dataTask.taskIdentifier })?.value {
-            dataTaskDataHolder[dataTask.taskIdentifier] = nil
-            taskData.completionHandler?(data, dataTask.response, nil)
+            if taskData.loadedData == nil {
+                taskData.loadedData = data
+            } else {
+                taskData.loadedData?.append(data)
+            }
+
+            if let loadedData = taskData.loadedData, Int64(loadedData.count) <= dataTask.response?.expectedContentLength ?? 0 {
+                dataTaskDataHolder[dataTask.taskIdentifier] = nil
+                taskData.completionHandler?(loadedData, dataTask.response, nil)
+            }
         }
     }
 

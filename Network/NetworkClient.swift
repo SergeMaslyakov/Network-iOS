@@ -47,6 +47,8 @@ public enum NetworkLayer {
         public let task: URLSessionDataTask
         public let completionHandler: ((Data?, URLResponse?, Error?) -> Void)?
 
+        public var loadedData: Data? = nil
+
         public init(task: URLSessionDataTask, completionHandler: ((Data?, URLResponse?, Error?) -> Void)? = nil) {
             self.task = task
             self.completionHandler = completionHandler
