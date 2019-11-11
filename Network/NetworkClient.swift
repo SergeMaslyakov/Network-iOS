@@ -44,8 +44,8 @@ public enum NetworkLayer {
     // swiftlint:enable weak_delegate
 
     public class SessionTaskData {
-        let task: URLSessionDataTask
-        let completionHandler: ((Data?, URLResponse?, Error?) -> Void)?
+        public let task: URLSessionDataTask
+        public let completionHandler: ((Data?, URLResponse?, Error?) -> Void)?
 
         public init(task: URLSessionDataTask, completionHandler: ((Data?, URLResponse?, Error?) -> Void)? = nil) {
             self.task = task
@@ -54,8 +54,8 @@ public enum NetworkLayer {
     }
 
     public class SessionDownloadTaskData {
-        let task: URLSessionDownloadTask
-        let completionHandler: ((URL?, URLResponse?, Error?) -> Void)?
+        public let task: URLSessionDownloadTask
+        public let completionHandler: ((URL?, URLResponse?, Error?) -> Void)?
 
         public init(task: URLSessionDownloadTask, completionHandler: ((URL?, URLResponse?, Error?) -> Void)? = nil) {
             self.task = task
