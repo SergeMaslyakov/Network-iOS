@@ -54,7 +54,7 @@ open class BackgroundSessionDelegateProvider: NSObject, URLSessionDataDelegate, 
                 taskData.loadedData?.append(data)
             }
 
-            if let loadedData = taskData.loadedData, Int64(loadedData.count) <= dataTask.response?.expectedContentLength ?? 0 {
+            if let loadedData = taskData.loadedData, Int64(loadedData.count) >= dataTask.response?.expectedContentLength ?? 0 {
                 dataTaskDataHolder[dataTask.taskIdentifier] = nil
                 taskData.completionHandler?(loadedData, dataTask.response, nil)
             }
