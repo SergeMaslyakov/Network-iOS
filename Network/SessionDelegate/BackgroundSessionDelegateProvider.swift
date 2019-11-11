@@ -7,7 +7,7 @@ open class BackgroundSessionDelegateProvider: NSObject, URLSessionDataDelegate, 
     public var dataTaskDataHolder: [Int: NetworkLayer.SessionTaskData] = [:]
     public var downloadTaskDataHolder: [Int: NetworkLayer.SessionDownloadTaskData] = [:]
 
-    open init() {}
+    public init() {}
 
     // MARK: - Task management
 
