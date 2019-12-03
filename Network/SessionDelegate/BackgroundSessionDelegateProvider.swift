@@ -19,13 +19,6 @@ open class BackgroundSessionDelegateProvider: NSObject, URLSessionDataDelegate, 
 
     // MARK: - URLSessionDelegate
 
-    open func urlSession(_ session: URLSession, task: URLSessionTask,
-                         willBeginDelayedRequest request: URLRequest,
-                         completionHandler: @escaping (URLSession.DelayedRequestDisposition, URLRequest?) -> Void) {
-
-        completionHandler(.continueLoading, nil)
-    }
-
     open func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
         debugPrint("URLSession(\(session.sessionDescription ?? "unnamed")):didBecomeInvalidWithError:\(error ?? NetworkError.unexpected)")
     }
@@ -40,6 +33,13 @@ open class BackgroundSessionDelegateProvider: NSObject, URLSessionDataDelegate, 
     }
 
     // MARK: - URLSessionTaskDelegate
+
+    open func urlSession(_ session: URLSession, task: URLSessionTask,
+                         willBeginDelayedRequest request: URLRequest,
+                         completionHandler: @escaping (URLSession.DelayedRequestDisposition, URLRequest?) -> Void) {
+
+        completionHandler(.continueLoading, nil)
+    }
 
     open func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if let data = dataTaskDataHolder.first(where: { $0.key == task.taskIdentifier })?.value {
