@@ -32,7 +32,7 @@ open class DebugBehavior: NetworkRequestBehavior {
     }
 
     public func willSend(request: URLRequest, session: URLSession) {
-        gurd shouldLogRequest(request) else { return }
+        guard shouldLogRequest(request) else { return }
 
         let data = extractSentData(request: request, session: session)
         let truncated = data.body.count > bodyMaxLength ? " ...truncated(\(data.body.count) >> \(bodyMaxLength))" : ""
