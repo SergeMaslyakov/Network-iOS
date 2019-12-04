@@ -1,8 +1,8 @@
 import Foundation
 
-public final class DebugBehavior: NetworkRequestBehavior {
+open class DebugBehavior: NetworkRequestBehavior {
 
-    struct DebugData {
+    public struct DebugData {
         let ts: String
         let url: String
         let code: String
@@ -32,6 +32,8 @@ public final class DebugBehavior: NetworkRequestBehavior {
     }
 
     public func willSend(request: URLRequest, session: URLSession) {
+        gurd shouldLogRequest(request) else { return }
+
         let data = extractSentData(request: request, session: session)
         let truncated = data.body.count > bodyMaxLength ? " ...truncated(\(data.body.count) >> \(bodyMaxLength))" : ""
 
@@ -50,6 +52,8 @@ public final class DebugBehavior: NetworkRequestBehavior {
     }
 
     public func didReceive(response: HTTPURLResponse, data: Data?, request: URLRequest) {
+        guard shouldLogResponse(response) else { return }
+
         let data = extractReceivedData(response: response, data: data, request: request)
         let truncated = data.body.count > bodyMaxLength ? " ...truncated(\(data.body.count) >> \(bodyMaxLength))" : ""
 
@@ -68,6 +72,16 @@ public final class DebugBehavior: NetworkRequestBehavior {
     }
 
     // MARK: - Helpers
+    
+    open func shouldLogRequest(_ request: URLRequest) -> Bool {
+        // override point for filtering requests
+        return true
+    }
+
+    open func shouldLogResponse(_ response: HTTPURLResponse) -> Bool {
+        // override point for filtering responses
+        return true
+    }
 
     func extractSentData(request: URLRequest, session: URLSession) -> DebugData {
         let defaultHeaders = (session.configuration.httpAdditionalHeaders as? [String: String]) ?? [:]
