@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		952ACB8423E9CA8400D52AC9 /* OSLogDebugBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952ACB8323E9CA8400D52AC9 /* OSLogDebugBehavior.swift */; };
 		955DD34F22C20AB70031AD92 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD32522C20AB70031AD92 /* NetworkClient.swift */; };
 		955DD35822C20AB70031AD92 /* URLRequest+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD33122C20AB70031AD92 /* URLRequest+Helpers.swift */; };
 		955DD35922C20AB70031AD92 /* HTTPURLResponse+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955DD33222C20AB70031AD92 /* HTTPURLResponse+Helpers.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		952ACB8323E9CA8400D52AC9 /* OSLogDebugBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLogDebugBehavior.swift; sourceTree = "<group>"; };
 		955DD32522C20AB70031AD92 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		955DD32822C20AB70031AD92 /* ReleaseTest.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ReleaseTest.xcconfig; sourceTree = "<group>"; };
 		955DD32922C20AB70031AD92 /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				955DD33522C20AB70031AD92 /* NetworkRequestBehavior.swift */,
 				955DD33622C20AB70031AD92 /* DebugBehavior.swift */,
 				957FE6F322C2140400A11BC2 /* NetworkLoger.swift */,
+				952ACB8323E9CA8400D52AC9 /* OSLogDebugBehavior.swift */,
 			);
 			path = Behaviors;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				957FE6F422C2140400A11BC2 /* NetworkLoger.swift in Sources */,
 				955DD35922C20AB70031AD92 /* HTTPURLResponse+Helpers.swift in Sources */,
 				95A7656222D5D1A6008658AA /* ConstantsKeys.swift in Sources */,
+				952ACB8423E9CA8400D52AC9 /* OSLogDebugBehavior.swift in Sources */,
 				955DD36522C20AB70031AD92 /* NetworkResponseDecoding.swift in Sources */,
 				955DD36022C20AB70031AD92 /* JSONRequestEncoder.swift in Sources */,
 				955DD36E22C20AB70031AD92 /* HTTPStatusCodes.swift in Sources */,
