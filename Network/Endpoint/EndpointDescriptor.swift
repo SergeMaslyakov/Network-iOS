@@ -15,6 +15,7 @@ public protocol EndpointDescriptor {
 
     var method: HTTPMethod { get }
     var path: String { get }
+    var apiVers: String? { get }
 
     var overriddenBaseURL: URL? { get }
     var customEncoder: NetworkRequestEncoding? { get }
@@ -34,6 +35,10 @@ public protocol EndpointDescriptor {
 }
 
 public extension EndpointDescriptor {
+
+    var apiVers: String? {
+        return nil
+    }
 
     var overriddenBaseURL: URL? {
         return nil

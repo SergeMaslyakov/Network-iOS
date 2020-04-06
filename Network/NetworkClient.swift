@@ -15,6 +15,7 @@ public enum NetworkLayer {
 
         public init(timeout: TimeInterval,
                     baseURL: URL,
+                    apiVers: String?,
                     sessionDelegate: URLSessionDelegate,
                     isBackgroundSession: Bool,
                     authProvider: AuthorizationProvider,
@@ -24,6 +25,7 @@ public enum NetworkLayer {
 
             self.timeout = timeout
             self.baseURL = baseURL
+            self.apiVers = apiVers
             self.sessionDelegate = sessionDelegate
             self.isBackgroundSession = isBackgroundSession
             self.authProvider = authProvider
@@ -34,6 +36,7 @@ public enum NetworkLayer {
 
         let timeout: TimeInterval
         let baseURL: URL
+        let apiVers: String?
         let sessionDelegate: URLSessionDelegate
         let isBackgroundSession: Bool
         let authProvider: AuthorizationProvider
@@ -89,6 +92,7 @@ extension NetworkClient {
 
     func assembleURLRequest(for endpoint: EndpointDescriptor,
                             with baseURL: URL,
+                            _ apiVers: String?,
                             _ encoder: NetworkRequestEncoding,
                             _ authProvider: AuthorizationProvider,
                             _ behaviours: [NetworkRequestBehavior],
@@ -96,7 +100,8 @@ extension NetworkClient {
         var urlRequest: URLRequest
 
         let finalBaseURL = endpoint.overriddenBaseURL ?? baseURL
-        let url = finalBaseURL.appendingPathComponent(endpoint.path)
+        let path = (apiVers ?? "") + endpoint.path
+        let url = finalBaseURL.appendingPathComponent(path)
 
         /// URL queries
         let urlComponents = URLComponents(string: url.absoluteString)

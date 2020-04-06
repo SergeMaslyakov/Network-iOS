@@ -10,6 +10,7 @@ public class NetworkClientImpl: NetworkClient {
 
     private let timeout: TimeInterval
     private let baseURL: URL
+    private let apiVers: String?
     private let defaultBehaviors: [NetworkRequestBehavior]
 
     private let responseDecoder: NetworkResponseDecoding
@@ -23,6 +24,7 @@ public class NetworkClientImpl: NetworkClient {
     public init(configuration: NetworkLayer.Configuration, sessionConfiguration: URLSessionConfiguration) {
         self.timeout = configuration.timeout
         self.baseURL = configuration.baseURL
+        self.apiVers = configuration.apiVers
         self.authProvider = configuration.authProvider
         self.requestEncoder = configuration.requestEncoder
         self.responseDecoder = configuration.responseDecoder
@@ -65,8 +67,10 @@ public class NetworkClientImpl: NetworkClient {
     public func sendRequest(endpoint: EndpointDescriptor, sendImmediately: Bool,
                             completion: @escaping (Result<Data?, NetworkError>) -> Void) throws -> NetworkLayer.SessionTaskData {
         let encoder = endpoint.customEncoder ?? requestEncoder
+        let apiVers = endpoint.apiVers ?? self.apiVers
         let request = try assembleURLRequest(for: endpoint,
                                              with: baseURL,
+                                             apiVers,
                                              encoder,
                                              authProvider,
                                              defaultBehaviors,
@@ -114,8 +118,10 @@ public class NetworkClientImpl: NetworkClient {
     public func downloadTask(endpoint: EndpointDescriptor, sendImmediately: Bool,
                              completion: @escaping (Result<URL, NetworkError>) -> Void) throws -> NetworkLayer.SessionDownloadTaskData {
         let encoder = endpoint.customEncoder ?? requestEncoder
+        let apiVers = endpoint.apiVers ?? self.apiVers
         let request = try assembleURLRequest(for: endpoint,
                                              with: baseURL,
+                                             apiVers,
                                              encoder,
                                              authProvider,
                                              defaultBehaviors,
