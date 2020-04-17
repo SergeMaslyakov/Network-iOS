@@ -49,13 +49,6 @@
 /* Begin PBXFileReference section */
 		952ACB8323E9CA8400D52AC9 /* OSLogDebugBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLogDebugBehavior.swift; sourceTree = "<group>"; };
 		955DD32522C20AB70031AD92 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
-		955DD32822C20AB70031AD92 /* ReleaseTest.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ReleaseTest.xcconfig; sourceTree = "<group>"; };
-		955DD32922C20AB70031AD92 /* Shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
-		955DD32A22C20AB70031AD92 /* SharedTest.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SharedTest.xcconfig; sourceTree = "<group>"; };
-		955DD32B22C20AB70031AD92 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
-		955DD32C22C20AB70031AD92 /* Framework.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Framework.xcconfig; sourceTree = "<group>"; };
-		955DD32D22C20AB70031AD92 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
-		955DD32E22C20AB70031AD92 /* DebugTest.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DebugTest.xcconfig; sourceTree = "<group>"; };
 		955DD32F22C20AB70031AD92 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		955DD33122C20AB70031AD92 /* URLRequest+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+Helpers.swift"; sourceTree = "<group>"; };
 		955DD33222C20AB70031AD92 /* HTTPURLResponse+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Helpers.swift"; sourceTree = "<group>"; };
@@ -82,9 +75,11 @@
 		957FE6F722C214CA00A11BC2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		957FE6FE22C214CA00A11BC2 /* NetworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		95A7656122D5D1A6008658AA /* ConstantsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsKeys.swift; sourceTree = "<group>"; };
+		95B4D4462449E90300CF2538 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		95B4D4482449E9D200CF2538 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		95FE75FE2379AE5A00F506E3 /* BackgroundSessionDelegateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSessionDelegateProvider.swift; sourceTree = "<group>"; };
 		E0FD11DD21477A5F008C2EF8 /* NetworkFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0FD11E621477A5F008C2EF8 /* NetworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0FD11E621477A5F008C2EF8 /* .xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = .xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +101,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		955DD32422C20AB70031AD92 /* Network */ = {
+		955DD32422C20AB70031AD92 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				955DD34322C20AB70031AD92 /* NetworkClientImpl.swift */,
@@ -114,8 +109,8 @@
 				955DD34722C20AB70031AD92 /* NetworkError.swift */,
 				95A7656122D5D1A6008658AA /* ConstantsKeys.swift */,
 				955DD33322C20AB70031AD92 /* Network.h */,
+				955DD32F22C20AB70031AD92 /* Info.plist */,
 				95FE75FD2379AE4000F506E3 /* SessionDelegate */,
-				955DD32622C20AB70031AD92 /* Configurations */,
 				955DD33022C20AB70031AD92 /* Extensions */,
 				955DD33422C20AB70031AD92 /* Behaviors */,
 				955DD33822C20AB70031AD92 /* Endpoint */,
@@ -123,30 +118,7 @@
 				955DD34422C20AB70031AD92 /* Authorization */,
 				955DD34A22C20AB70031AD92 /* Thirdparty */,
 			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		955DD32622C20AB70031AD92 /* Configurations */ = {
-			isa = PBXGroup;
-			children = (
-				955DD32722C20AB70031AD92 /* Builds */,
-				955DD32F22C20AB70031AD92 /* Info.plist */,
-			);
-			path = Configurations;
-			sourceTree = "<group>";
-		};
-		955DD32722C20AB70031AD92 /* Builds */ = {
-			isa = PBXGroup;
-			children = (
-				955DD32822C20AB70031AD92 /* ReleaseTest.xcconfig */,
-				955DD32922C20AB70031AD92 /* Shared.xcconfig */,
-				955DD32A22C20AB70031AD92 /* SharedTest.xcconfig */,
-				955DD32B22C20AB70031AD92 /* Debug.xcconfig */,
-				955DD32C22C20AB70031AD92 /* Framework.xcconfig */,
-				955DD32D22C20AB70031AD92 /* Release.xcconfig */,
-				955DD32E22C20AB70031AD92 /* DebugTest.xcconfig */,
-			);
-			path = Builds;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		955DD33022C20AB70031AD92 /* Extensions */ = {
@@ -219,21 +191,13 @@
 			path = HTTPStatusCodes;
 			sourceTree = "<group>";
 		};
-		957FE6F522C214CA00A11BC2 /* NetworkTests */ = {
+		957FE6F522C214CA00A11BC2 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				957FE6FE22C214CA00A11BC2 /* NetworkTests.swift */,
-				957FE6F622C214CA00A11BC2 /* Configurations */,
-			);
-			path = NetworkTests;
-			sourceTree = "<group>";
-		};
-		957FE6F622C214CA00A11BC2 /* Configurations */ = {
-			isa = PBXGroup;
-			children = (
 				957FE6F722C214CA00A11BC2 /* Info.plist */,
 			);
-			path = Configurations;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		95FE75FD2379AE4000F506E3 /* SessionDelegate */ = {
@@ -254,8 +218,10 @@
 		E0FD11D321477A5F008C2EF8 = {
 			isa = PBXGroup;
 			children = (
-				957FE6F522C214CA00A11BC2 /* NetworkTests */,
-				955DD32422C20AB70031AD92 /* Network */,
+				95B4D4482449E9D200CF2538 /* Package.swift */,
+				95B4D4462449E90300CF2538 /* README.md */,
+				957FE6F522C214CA00A11BC2 /* Tests */,
+				955DD32422C20AB70031AD92 /* Sources */,
 				E0FD11DE21477A5F008C2EF8 /* Products */,
 				E0C82F27214789D8009EA559 /* Frameworks */,
 			);
@@ -265,7 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				E0FD11DD21477A5F008C2EF8 /* NetworkFramework.framework */,
-				E0FD11E621477A5F008C2EF8 /* NetworkTests.xctest */,
+				E0FD11E621477A5F008C2EF8 /* .xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -317,7 +283,7 @@
 			);
 			name = NetworkTests;
 			productName = CoreTests;
-			productReference = E0FD11E621477A5F008C2EF8 /* NetworkTests.xctest */;
+			productReference = E0FD11E621477A5F008C2EF8 /* .xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -429,13 +395,13 @@
 /* Begin XCBuildConfiguration section */
 		E01BC7172148D93A004BB3A4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 955DD32C22C20AB70031AD92 /* Framework.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -444,27 +410,26 @@
 		};
 		E01BC7182148D93A004BB3A4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 955DD32D22C20AB70031AD92 /* Release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = Network/Configurations/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.network.ios;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 		E01BC7192148D93A004BB3A4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 955DD32822C20AB70031AD92 /* ReleaseTest.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_LINK_OBJC_RUNTIME = YES;
@@ -472,14 +437,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = YES;
-				INFOPLIST_FILE = NetworkTests/Configurations/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
 		E0FD11EF21477A5F008C2EF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 955DD32C22C20AB70031AD92 /* Framework.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -493,6 +457,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -500,20 +465,20 @@
 		};
 		E0FD11F221477A5F008C2EF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 955DD32B22C20AB70031AD92 /* Debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = Network/Configurations/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.network.ios;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -521,7 +486,6 @@
 		};
 		E0FD11F521477A5F008C2EF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 955DD32E22C20AB70031AD92 /* DebugTest.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_LINK_OBJC_RUNTIME = YES;
@@ -529,7 +493,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = YES;
-				INFOPLIST_FILE = NetworkTests/Configurations/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
