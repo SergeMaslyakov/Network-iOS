@@ -2,20 +2,15 @@ import Foundation
 
 public protocol NetworkLogger: class {
 
-    /// Logs verbose data
+    /// Logs info data
     ///
     /// - Parameter string: The data to be logged as string.
-    func verbose(_ string: String)
+    func info(_ string: String)
 
     /// Logs info data
     ///
     /// - Parameter string: The data to be logged as string.
     func debug(_ string: String)
-
-    /// Logs info data
-    ///
-    /// - Parameter string: The data to be logged as string.
-    func info(_ string: String)
 
     /// Logs warning data
     ///

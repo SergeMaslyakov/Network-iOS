@@ -48,7 +48,7 @@ open class DebugBehavior: NetworkRequestBehavior {
 
         """
 
-        logger.verbose(log)
+        logger.info(log)
     }
 
     public func didReceive(response: HTTPURLResponse, data: Data?, request: URLRequest) {
@@ -68,7 +68,7 @@ open class DebugBehavior: NetworkRequestBehavior {
 
         """
 
-        logger.verbose(log)
+        logger.info(log)
     }
 
     // MARK: - Helpers
