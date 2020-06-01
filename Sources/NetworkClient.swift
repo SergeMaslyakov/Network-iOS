@@ -100,7 +100,8 @@ extension NetworkClient {
         var urlRequest: URLRequest
 
         let finalBaseURL = endpoint.overriddenBaseURL ?? baseURL
-        let path = (apiVers ?? "") + endpoint.path
+        let finalApiVers = endpoint.overriddenApiVers ?? apiVers
+        let path = (finalApiVers ?? "") + endpoint.path
         let url = finalBaseURL.appendingPathComponent(path)
 
         /// URL queries
