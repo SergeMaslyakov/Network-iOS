@@ -38,42 +38,42 @@ public protocol EndpointDescriptor {
 public extension EndpointDescriptor {
 
     var apiVers: String? {
-        return nil
+        nil
     }
 
     var overriddenBaseURL: URL? {
-        return nil
+        nil
     }
 
     var overriddenApiVers: String? {
-        return nil
+        nil
     }
 
     var customEncoder: NetworkRequestEncoding? {
-        return nil
+        nil
     }
 
     var queries: URLQueries {
-        return [:]
+        [:]
     }
 
     var params: [String: Any]? {
-        return nil
+        nil
     }
 
     var headers: HTTPHeaders {
-        return [:]
+        [:]
     }
 
     var keyPath: String? {
-        return nil
+        nil
     }
 
     var fileName: String {
-        return UUID().uuidString
+        UUID().uuidString
     }
 
     var authRequired: Bool {
-        return true
+        true
     }
 }

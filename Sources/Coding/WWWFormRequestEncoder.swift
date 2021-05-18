@@ -44,7 +44,7 @@ public final class WWWFormRequestEncoder: NetworkRequestEncoding {
     public init() {}
 
     public func encode(params: [String: Any]) throws -> Data {
-        return Data(query(params).utf8)
+        Data(query(params).utf8)
     }
 
     private func query(_ parameters: [String: Any]) -> String {
@@ -95,12 +95,13 @@ public final class WWWFormRequestEncoder: NetworkRequestEncoding {
     ///
     /// - returns: The percent-escaped string.
     private func escape(_ string: String) -> String {
-        return string.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)?
+        string
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)?
             .replacingOccurrences(of: "+", with: "%2B") ?? string
     }
 
 }
 
 private extension NSNumber {
-    var isBool: Bool { return CFBooleanGetTypeID() == CFGetTypeID(self) }
+    var isBool: Bool { CFBooleanGetTypeID() == CFGetTypeID(self) }
 }

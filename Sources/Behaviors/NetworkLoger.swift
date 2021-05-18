@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol NetworkLogger: class {
+public protocol NetworkLogger: AnyObject {
 
     /// Logs info data
     ///

@@ -16,11 +16,11 @@ public protocol NetworkRequestBehavior {
 public extension NetworkRequestBehavior {
 
     var additionalQueries: URLQueries {
-        return [:]
+        [:]
     }
 
     var additionalHeaders: HTTPHeaders {
-        return [:]
+        [:]
     }
 
     func willSend(request: URLRequest, session: URLSession) {}
