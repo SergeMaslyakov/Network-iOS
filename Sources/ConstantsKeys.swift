@@ -2,9 +2,9 @@ import Foundation
 
 public enum ConstantsKeys {
 
-    static let contentLength = "Content-Length"
-    static let contentType = "Content-Type"
+    public static let contentLength = "Content-Length"
+    public static let contentType = "Content-Type"
 
-    static let wwwFormUrlencoded = "x-www-form-urlencoded"
-    static let applicationJSON = "application/json"
+    public static let wwwFormUrlencoded = "x-www-form-urlencoded"
+    public static let applicationJSON = "application/json"
 }
