@@ -5,7 +5,6 @@ import Foundation
 /// - Alamofire - https://github.com/Alamofire
 ///
 public final class WWWFormRequestEncoder: NetworkRequestEncoding {
-
     /// Configures how `Array` parameters are encoded.
     ///
     /// - brackets:        An empty set of square brackets is appended to the key for every value.
@@ -41,7 +40,7 @@ public final class WWWFormRequestEncoder: NetworkRequestEncoding {
         }
     }
 
-    public init() {}
+    public init() { }
 
     public func encode(params: [String: Any]) throws -> Data {
         Data(query(params).utf8)
@@ -99,7 +98,6 @@ public final class WWWFormRequestEncoder: NetworkRequestEncoding {
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)?
             .replacingOccurrences(of: "+", with: "%2B") ?? string
     }
-
 }
 
 private extension NSNumber {

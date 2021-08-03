@@ -1,7 +1,6 @@
 import Foundation
 
 open class DebugBehavior: NetworkRequestBehavior {
-
     public struct DebugData {
         let ts: String
         let url: String
@@ -22,7 +21,7 @@ open class DebugBehavior: NetworkRequestBehavior {
 
     private var timestamp: String {
         let date = Date()
-        let fract = Int((date.timeIntervalSince1970 - TimeInterval(Int(date.timeIntervalSince1970)))*1000)
+        let fract = Int((date.timeIntervalSince1970 - TimeInterval(Int(date.timeIntervalSince1970))) * 1000)
         return "\(dateFormatter.string(from: date)).\(fract)"
     }
 
@@ -72,7 +71,7 @@ open class DebugBehavior: NetworkRequestBehavior {
     }
 
     // MARK: - Helpers
-    
+
     open func shouldLogRequest(_ request: URLRequest) -> Bool {
         // override point for filtering requests
         return true

@@ -1,7 +1,6 @@
 import Foundation
 
 public protocol NetworkLogger: AnyObject {
-
     /// Logs info data
     ///
     /// - Parameter string: The data to be logged as string.

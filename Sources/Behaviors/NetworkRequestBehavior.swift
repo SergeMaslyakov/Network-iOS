@@ -5,7 +5,6 @@ import Foundation
 ///
 
 public protocol NetworkRequestBehavior {
-
     var additionalQueries: URLQueries { get }
     var additionalHeaders: HTTPHeaders { get }
 
@@ -14,7 +13,6 @@ public protocol NetworkRequestBehavior {
 }
 
 public extension NetworkRequestBehavior {
-
     var additionalQueries: URLQueries {
         [:]
     }
@@ -23,7 +21,7 @@ public extension NetworkRequestBehavior {
         [:]
     }
 
-    func willSend(request: URLRequest, session: URLSession) {}
+    func willSend(request: URLRequest, session: URLSession) { }
 
-    func didReceive(response: HTTPURLResponse, data: Data?, request: URLRequest) {}
+    func didReceive(response: HTTPURLResponse, data: Data?, request: URLRequest) { }
 }

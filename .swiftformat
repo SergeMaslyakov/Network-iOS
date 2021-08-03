@@ -1,0 +1,17 @@
+# format options
+--allman false
+--elseposition same-line
+--guardelse auto
+--emptybraces spaced
+--header strip
+--markextensions always
+--stripunusedargs closure-only
+--wraparguments after-first
+--wrapparameters after-first
+--funcattributes prev-line
+
+# file options
+--exclude Tools,DerivedData,Package.swift
+
+# rules
+--disable marktypes,trailingCommas,wrapEnumCases,wrapMultilineStatementBraces,wrapSwitchCases

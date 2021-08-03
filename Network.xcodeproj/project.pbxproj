@@ -80,6 +80,7 @@
 		95B4D4482449E9D200CF2538 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		95FE75FE2379AE5A00F506E3 /* BackgroundSessionDelegateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSessionDelegateProvider.swift; sourceTree = "<group>"; };
 		E0FD11DD21477A5F008C2EF8 /* NetworkFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6878CF626B98186001EF3F7 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = file.swiftformat; path = .swiftformat; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +219,7 @@
 		E0FD11D321477A5F008C2EF8 = {
 			isa = PBXGroup;
 			children = (
+				E6878CF626B98186001EF3F7 /* .swiftformat */,
 				95B4D4482449E9D200CF2538 /* Package.swift */,
 				95B4D4462449E90300CF2538 /* README.md */,
 				957FE6F522C214CA00A11BC2 /* Tests */,
@@ -272,6 +274,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E0FD11F121477A5F008C2EF8 /* Build configuration list for PBXNativeTarget "NetworkFramework" */;
 			buildPhases = (
+				E6878CF526B9814B001EF3F7 /* ShellScript */,
 				E0FD11D821477A5F008C2EF8 /* Headers */,
 				E0FD11D921477A5F008C2EF8 /* Sources */,
 				E0FD11DA21477A5F008C2EF8 /* Frameworks */,
@@ -340,6 +343,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E6878CF526B9814B001EF3F7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh \"${PROJECT_DIR}/Tools/Scripts/swiftformat.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		95B2B4AE2449F7490039CB30 /* Sources */ = {

@@ -7,7 +7,6 @@ import Foundation
 /// - Alamofire - https://github.com/Alamofire
 ///
 public final class MultipartFormEncoder: NetworkRequestEncoding {
-
     private let dataKey: String
     private let boundaryToken: String
 
@@ -40,9 +39,9 @@ public final class MultipartFormEncoder: NetworkRequestEncoding {
             let boundaryText: String
 
             switch self {
-            case .initial(let token):
+            case let .initial(token):
                 boundaryText = "--\(token)\r\n"
-            case .final(let token):
+            case let .final(token):
                 boundaryText = "--\(token)--\r\n"
             }
 
@@ -81,5 +80,4 @@ public final class MultipartFormEncoder: NetworkRequestEncoding {
 
         return multipartData
     }
-
 }
