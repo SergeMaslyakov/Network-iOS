@@ -7,7 +7,6 @@ import Foundation
 ///
 
 public class NetworkClientImpl: NetworkClient {
-
     private let timeout: TimeInterval
     private let baseURL: URL
     private let apiVers: String?
@@ -22,36 +21,34 @@ public class NetworkClientImpl: NetworkClient {
     public var sendImmediately: Bool = true
 
     public init(configuration: NetworkLayer.Configuration, sessionConfiguration: URLSessionConfiguration) {
-        self.timeout = configuration.timeout
-        self.baseURL = configuration.baseURL
-        self.apiVers = configuration.apiVers
-        self.authProvider = configuration.authProvider
-        self.requestEncoder = configuration.requestEncoder
-        self.responseDecoder = configuration.responseDecoder
-        self.defaultBehaviors = configuration.defaultBehaviors
-        self.isBackgroundSession = configuration.isBackgroundSession
+        timeout = configuration.timeout
+        baseURL = configuration.baseURL
+        apiVers = configuration.apiVers
+        authProvider = configuration.authProvider
+        requestEncoder = configuration.requestEncoder
+        responseDecoder = configuration.responseDecoder
+        defaultBehaviors = configuration.defaultBehaviors
+        isBackgroundSession = configuration.isBackgroundSession
 
-        self.urlSession = URLSession(configuration: sessionConfiguration, delegate: configuration.sessionDelegate, delegateQueue: .main)
+        urlSession = URLSession(configuration: sessionConfiguration, delegate: configuration.sessionDelegate, delegateQueue: .main)
     }
 
     // MARK: - NetworkClientProtocol
 
     public func sendRequest<T: Decodable>(endpoint: EndpointDescriptor,
                                           completion: @escaping (Result<T, NetworkError>) -> Void) throws -> NetworkLayer.SessionTaskData {
-
         let taskData = try sendRequest(endpoint: endpoint, sendImmediately: false) { [weak self] result in
             guard let self = self else { return }
 
             switch result {
-            case .failure(let error):
+            case let .failure(error):
                 completion(.failure(error))
-            case .success(let data):
+            case let .success(data):
                 if let data = data {
                     self.parse(data: data, decoder: self.responseDecoder, endpoint.keyPath, completion)
                 } else {
                     completion(.failure(.invalidData))
                 }
-
             }
         }
 
@@ -81,7 +78,7 @@ public class NetworkClientImpl: NetworkClient {
             $0.willSend(request: request, session: urlSession)
         }
 
-        let completionHandler: ((Data?, URLResponse?, Error?) -> Void) = { [weak self] (data, response, error) in
+        let completionHandler: ((Data?, URLResponse?, Error?) -> Void) = { [weak self] data, response, error in
             guard let self = self else { return }
 
             guard error == nil, let response = response as? HTTPURLResponse else {
@@ -132,7 +129,7 @@ public class NetworkClientImpl: NetworkClient {
             $0.willSend(request: request, session: urlSession)
         }
 
-        let completionHandler: ((URL?, URLResponse?, Error?) -> Void) = { [weak self] (url, response, error) in
+        let completionHandler: ((URL?, URLResponse?, Error?) -> Void) = { [weak self] url, response, error in
             guard let self = self else { return }
 
             guard error == nil, let response = response as? HTTPURLResponse, let url = url else {
@@ -143,27 +140,26 @@ public class NetworkClientImpl: NetworkClient {
             let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let destinationURL = documentsPath.appendingPathComponent(endpoint.fileName)
 
-            /// to delete a file with the same name if needed
+            // to delete a file with the same name if needed
             try? FileManager.default.removeItem(at: destinationURL)
 
             var localURL: URL?
 
             do {
-                /// move file to document directory
+                // move file to document directory
                 try FileManager.default.copyItem(at: url, to: destinationURL)
                 localURL = destinationURL
-            } catch let error {
+            } catch {
                 self.processTaskError(error: error, completion: completion)
                 return
             }
 
-            /// Did receive hook
+            // Did receive hook
             self.defaultBehaviors.forEach {
                 $0.didReceive(response: response, data: nil, request: request)
             }
 
             self.validate(request: request, response: response, fileURL: localURL, completion)
-
         }
 
         let task: URLSessionDownloadTask
@@ -182,6 +178,5 @@ public class NetworkClientImpl: NetworkClient {
             task = urlSession.downloadTask(with: request, completionHandler: completionHandler)
             return NetworkLayer.SessionDownloadTaskData(task: task)
         }
-
     }
 }

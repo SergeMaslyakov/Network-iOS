@@ -2,7 +2,6 @@ import Foundation
 import os
 
 open class OSLogDebugBehavior: NetworkRequestBehavior {
-
     public struct DebugData {
         let url: String
         let code: String
@@ -14,7 +13,7 @@ open class OSLogDebugBehavior: NetworkRequestBehavior {
     private let log: OSLog
 
     public init(subsystem: String) {
-        self.log = OSLog(subsystem: subsystem, category: "Network")
+        log = OSLog(subsystem: subsystem, category: "Network")
     }
 
     public func willSend(request: URLRequest, session: URLSession) {

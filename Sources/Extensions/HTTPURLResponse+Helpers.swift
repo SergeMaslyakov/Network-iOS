@@ -1,7 +1,6 @@
 import Foundation
 
 extension HTTPURLResponse {
-
     var containsJSONContent: Bool {
         if let headers = allHeaderFields as? [String: String] {
             if let value = headers[ConstantsKeys.contentType] {

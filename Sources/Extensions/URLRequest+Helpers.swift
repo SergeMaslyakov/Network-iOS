@@ -1,7 +1,6 @@
 import Foundation
 
 extension URLRequest {
-
     var containsJSONContent: Bool {
         if let headers = allHTTPHeaderFields {
             if let value = headers[ConstantsKeys.contentType] {

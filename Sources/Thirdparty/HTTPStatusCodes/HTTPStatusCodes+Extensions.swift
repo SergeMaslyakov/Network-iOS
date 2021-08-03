@@ -1,39 +1,30 @@
-//
-//  HTTPStatusCodes+Extensions.swift
-//  HTTPStatusCodes
-//
-//  Created by Richard Hodgkins on 07/06/2016.
-//  Copyright © 2016 Rich H. All rights reserved.
-//
-
 import Foundation
 
 // swiftlint:disable line_length
 public extension HTTPStatusCode {
-
     /// Informational - Request received, continuing process.
     var isInformational: Bool {
-        return isIn(range: 100...199)
+        return isIn(range: 100 ... 199)
     }
 
     /// Success - The action was successfully received, understood, and accepted.
     var isSuccess: Bool {
-        return isIn(range: 200...299)
+        return isIn(range: 200 ... 299)
     }
 
     /// Redirection - Further action must be taken in order to complete the request.
     var isRedirection: Bool {
-        return isIn(range: 300...399)
+        return isIn(range: 300 ... 399)
     }
 
     /// Client Error - The request contains bad syntax or cannot be fulfilled.
     var isClientError: Bool {
-        return isIn(range: 400...499)
+        return isIn(range: 400 ... 499)
     }
 
     /// Server Error - The server failed to fulfill an apparently valid request.
     var isServerError: Bool {
-        return isIn(range: 500...599)
+        return isIn(range: 500 ... 599)
     }
 
     /// - returns: `true` if the status code is in the provided range, false otherwise.
@@ -50,6 +41,7 @@ public extension HTTPStatusCode {
 }
 
 // MARK: - Printing
+
 extension HTTPStatusCode: CustomDebugStringConvertible, CustomStringConvertible {
     public var description: String {
         return "\(rawValue) - \(localizedReasonPhrase)"
@@ -61,8 +53,8 @@ extension HTTPStatusCode: CustomDebugStringConvertible, CustomStringConvertible 
 }
 
 // MARK: - HTTP URL Response
-public extension HTTPStatusCode {
 
+public extension HTTPStatusCode {
     /// Obtains a possible status code from an optional HTTP URL response.
     init?(HTTPResponse: HTTPURLResponse?) {
         guard let statusCodeValue = HTTPResponse?.statusCode else {
@@ -81,7 +73,6 @@ public extension HTTPStatusCode {
 }
 
 public extension HTTPURLResponse {
-
     /**
      * Marked internal to expose (as `statusCodeValue`) for Objective-C interoperability only.
      *
@@ -114,8 +105,8 @@ public extension HTTPURLResponse {
 }
 
 // MARK: - Deprecated cases
-public extension HTTPStatusCode {
 
+public extension HTTPStatusCode {
     /// - deprecated: Renamed to `payloadTooLarge`
     @available(*, deprecated, renamed: "payloadTooLarge")
     static let requestEntityTooLarge = payloadTooLarge
@@ -168,7 +159,6 @@ public extension HTTPStatusCode {
 }
 
 public extension HTTPURLResponse {
-
     /// - deprecated: Renamed to `init(url:statusCode:httpVersion:headerFields)` to correct Swift 3 naming convention.
     @available(*, deprecated, renamed: "init(url:statusCode:httpVersion:headerFields:)", message: "Renamed to correct Swift 3 naming convention")
     @nonobjc
@@ -178,11 +168,11 @@ public extension HTTPURLResponse {
 }
 
 // MARK: - Remove cases
+
 /// Declared here for a cleaner API with no `!` types.
 private let __Unavailable: HTTPStatusCode! = nil
 
 public extension HTTPStatusCode {
-
     /// Checkpoint: 103
     ///
     /// Used in the resumable requests proposal to resume aborted PUT or POST requests.
@@ -219,4 +209,5 @@ public extension HTTPStatusCode {
     @available(*, unavailable, renamed: "requestHeaderFieldsTooLarge", message: "Changed to a 431 status code")
     static let requestHeaderTooLarge = __Unavailable
 }
+
 // swiftlint:enable line_length

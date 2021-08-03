@@ -7,12 +7,10 @@ import Foundation
 ///
 
 public enum NetworkLayer {
-
     // MARK: - Supporting data
 
     // swiftlint:disable weak_delegate
     public struct Configuration {
-
         public init(timeout: TimeInterval,
                     baseURL: URL,
                     apiVers: String?,
@@ -22,7 +20,6 @@ public enum NetworkLayer {
                     responseDecoder: NetworkResponseDecoding,
                     requestEncoder: NetworkRequestEncoding,
                     defaultBehaviors: [NetworkRequestBehavior]) {
-
             self.timeout = timeout
             self.baseURL = baseURL
             self.apiVers = apiVers
@@ -44,13 +41,14 @@ public enum NetworkLayer {
         let requestEncoder: NetworkRequestEncoding
         let defaultBehaviors: [NetworkRequestBehavior]
     }
+
     // swiftlint:enable weak_delegate
 
     public class SessionTaskData {
         public let task: URLSessionDataTask
         public let completionHandler: ((Data?, URLResponse?, Error?) -> Void)?
 
-        public var loadedData: Data? = nil
+        public var loadedData: Data?
 
         public init(task: URLSessionDataTask, completionHandler: ((Data?, URLResponse?, Error?) -> Void)? = nil) {
             self.task = task
@@ -70,7 +68,6 @@ public enum NetworkLayer {
 }
 
 public protocol NetworkClient {
-
     var isBackgroundSession: Bool { get }
     var sendImmediately: Bool { get set }
     var urlSession: URLSession { get }
@@ -87,7 +84,6 @@ public protocol NetworkClient {
 
 // swiftlint:disable function_parameter_count
 extension NetworkClient {
-
     // MARK: - URL request assembler
 
     func assembleURLRequest(for endpoint: EndpointDescriptor,
@@ -103,22 +99,23 @@ extension NetworkClient {
         let finalApiVers = endpoint.overriddenApiVers ?? apiVers
         let path = (finalApiVers ?? "") + endpoint.path
         let url = finalBaseURL.appendingPathComponent(path)
+        let requestTimeout = endpoint.requestTimeout ?? timeout
 
-        /// URL queries
+        // URL queries
         let urlComponents = URLComponents(string: url.absoluteString)
         let components = addURLComponents(from: endpoint, behaviours, existingComponents: urlComponents)
 
-        urlRequest = URLRequest(url: components?.url ?? url, timeoutInterval: timeout)
+        urlRequest = URLRequest(url: components?.url ?? url, timeoutInterval: requestTimeout)
         urlRequest.httpMethod = endpoint.method.rawValue
 
-        /// Headers
+        // Headers
         let headers = behaviours.map { $0.additionalHeaders }.reduce([], +) + endpoint.headers
         headers.forEach { data in
             urlRequest.setValue(data.value, forHTTPHeaderField: data.key)
         }
         urlRequest.setValue("0", forHTTPHeaderField: ConstantsKeys.contentLength)
 
-        /// Body
+        // Body
         if let params = endpoint.params {
             do {
                 let body = try encoder.encode(params: params)
@@ -129,7 +126,7 @@ extension NetworkClient {
             }
         }
 
-        /// Authorization
+        // Authorization
         if endpoint.authRequired {
             try authProvider.sign(request: &urlRequest)
         }
@@ -142,7 +139,6 @@ extension NetworkClient {
     func addURLComponents(from endpoint: EndpointDescriptor,
                           _ behaviours: [NetworkRequestBehavior],
                           existingComponents: URLComponents?) -> URLComponents? {
-
         let queries = behaviours.map { $0.additionalQueries }.reduce([], +) + endpoint.queries
 
         if !queries.isEmpty {
@@ -176,7 +172,6 @@ extension NetworkClient {
                   response: HTTPURLResponse,
                   data: Data?,
                   _ completion: @escaping (Result<Data?, NetworkError>) -> Void) {
-
         let statusCode = HTTPStatusCode(rawValue: response.statusCode) ?? .badResponse
 
         if !statusCode.isSuccess {
@@ -202,7 +197,6 @@ extension NetworkClient {
                   response: HTTPURLResponse,
                   fileURL: URL?,
                   _ completion: @escaping (Result<URL, NetworkError>) -> Void) {
-
         let statusCode = HTTPStatusCode(rawValue: response.statusCode) ?? .badResponse
 
         if statusCode.isSuccess {
@@ -228,6 +222,6 @@ extension NetworkClient {
             completion(.failure(.decodingError(error)))
         }
     }
-
 }
+
 // swiftlint:enable function_parameter_count

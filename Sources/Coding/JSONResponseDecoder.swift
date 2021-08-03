@@ -1,7 +1,6 @@
 import Foundation
 
 public final class JSONResponseDecoder: NetworkResponseDecoding {
-
     private let decoder: JSONDecoder
 
     public init(decoder: JSONDecoder) {
@@ -9,7 +8,6 @@ public final class JSONResponseDecoder: NetworkResponseDecoding {
     }
 
     public func decode<T: Decodable>(data: Data, keyPath: String? = nil) throws -> T {
-
         guard let keyPath = keyPath else {
             do {
                 return try decoder.decode(T.self, from: data)
@@ -41,7 +39,6 @@ public final class JSONResponseDecoder: NetworkResponseDecoding {
     }
 
     public func decode<T: Decodable>(jsonObject: Any, keyPath: String? = nil) throws -> T {
-
         do {
             let data: Data
 
@@ -55,6 +52,5 @@ public final class JSONResponseDecoder: NetworkResponseDecoding {
         } catch {
             throw CodingError.errorWithUnderlying(error)
         }
-
     }
 }

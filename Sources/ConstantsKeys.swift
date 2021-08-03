@@ -1,7 +1,6 @@
 import Foundation
 
 public enum ConstantsKeys {
-
     public static let contentLength = "Content-Length"
     public static let contentType = "Content-Type"
 

@@ -1,7 +1,6 @@
 import Foundation
 
 open class BackgroundSessionDelegateProvider: NSObject, URLSessionDataDelegate, URLSessionDownloadDelegate {
-
     public var backgroundCompletionHandler: (() -> Void)?
 
     public var dataTaskDataHolder: [Int: NetworkLayer.SessionTaskData] = [:]
@@ -37,7 +36,6 @@ open class BackgroundSessionDelegateProvider: NSObject, URLSessionDataDelegate, 
     open func urlSession(_ session: URLSession, task: URLSessionTask,
                          willBeginDelayedRequest request: URLRequest,
                          completionHandler: @escaping (URLSession.DelayedRequestDisposition, URLRequest?) -> Void) {
-
         completionHandler(.continueLoading, nil)
     }
 
@@ -76,5 +74,4 @@ open class BackgroundSessionDelegateProvider: NSObject, URLSessionDataDelegate, 
             taskData.completionHandler?(location, downloadTask.response, nil)
         }
     }
-
 }
