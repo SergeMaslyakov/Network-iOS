@@ -9,7 +9,7 @@ import Foundation
 
 // swiftlint:disable file_length line_length
 @objc public enum HTTPStatusCode: Int {
-    /// Synt syatus
+    /// Synt status
     case badResponse = -1
 
     /// Continue: 100
