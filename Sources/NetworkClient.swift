@@ -109,7 +109,7 @@ extension NetworkClient {
         urlRequest.httpMethod = endpoint.method.rawValue
 
         // Headers
-        let headers = behaviours.map { $0.additionalHeaders }.reduce([], +) + endpoint.headers
+        let headers = behaviours.map(\.additionalHeaders).reduce([], +) + endpoint.headers
         headers.forEach { data in
             urlRequest.setValue(data.value, forHTTPHeaderField: data.key)
         }
@@ -139,7 +139,7 @@ extension NetworkClient {
     func addURLComponents(from endpoint: EndpointDescriptor,
                           _ behaviours: [NetworkRequestBehavior],
                           existingComponents: URLComponents?) -> URLComponents? {
-        let queries = behaviours.map { $0.additionalQueries }.reduce([], +) + endpoint.queries
+        let queries = behaviours.map(\.additionalQueries).reduce([], +) + endpoint.queries
 
         if !queries.isEmpty {
             var components = existingComponents ?? URLComponents()
@@ -157,7 +157,7 @@ extension NetworkClient {
     func processTaskError<T>(error: Error?, completion: @escaping ((Result<T, NetworkError>) -> Void)) {
         let responseError: NetworkError
 
-        if let error = error {
+        if let error {
             responseError = .underlyingError(error)
         } else {
             responseError = .invalidResponse
@@ -175,15 +175,15 @@ extension NetworkClient {
         let statusCode = HTTPStatusCode(rawValue: response.statusCode) ?? .badResponse
 
         if !statusCode.isSuccess {
-            if let jsonData = data, response.containsJSONContent {
+            if let data, response.containsJSONContent {
                 do {
-                    let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments)
+                    let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                     completion(.failure(.httpErrorWithData(statusCode, json)))
                 } catch {
                     completion(.failure(.httpError(statusCode)))
                 }
-            } else if let textData = data, response.containsTextContent {
-                let text = String(data: textData, encoding: .utf8) ?? ""
+            } else if let data, response.containsTextContent {
+                let text = String(data: data, encoding: .utf8) ?? ""
                 completion(.failure(.httpErrorWithData(statusCode, text)))
             } else {
                 completion(.failure(.httpError(statusCode)))
@@ -200,8 +200,8 @@ extension NetworkClient {
         let statusCode = HTTPStatusCode(rawValue: response.statusCode) ?? .badResponse
 
         if statusCode.isSuccess {
-            if let url = fileURL {
-                completion(.success(url))
+            if let fileURL {
+                completion(.success(fileURL))
             } else {
                 completion(.failure(.invalidData))
             }

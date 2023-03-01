@@ -8,7 +8,7 @@ public final class JSONResponseDecoder: NetworkResponseDecoding {
     }
 
     public func decode<T: Decodable>(data: Data, keyPath: String? = nil) throws -> T {
-        guard let keyPath = keyPath else {
+        guard let keyPath else {
             do {
                 return try decoder.decode(T.self, from: data)
             } catch {
@@ -16,10 +16,7 @@ public final class JSONResponseDecoder: NetworkResponseDecoding {
             }
         }
 
-        if keyPath.isEmpty {
-            throw CodingError.emptyKeyPath
-        }
-
+        if keyPath.isEmpty { throw CodingError.emptyKeyPath }
         let json: Any
 
         do {
@@ -42,7 +39,7 @@ public final class JSONResponseDecoder: NetworkResponseDecoding {
         do {
             let data: Data
 
-            if let keyPath = keyPath, let dict = jsonObject as? [String: Any], let nestedJson = dict[keyPath] {
+            if let keyPath, let dict = jsonObject as? [String: Any], let nestedJson = dict[keyPath] {
                 data = try JSONSerialization.data(withJSONObject: nestedJson)
             } else {
                 data = try JSONSerialization.data(withJSONObject: jsonObject)

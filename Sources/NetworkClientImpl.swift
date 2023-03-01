@@ -44,7 +44,7 @@ public class NetworkClientImpl: NetworkClient {
             case let .failure(error):
                 completion(.failure(error))
             case let .success(data):
-                if let data = data {
+                if let data {
                     self.parse(data: data, decoder: self.responseDecoder, endpoint.keyPath, completion)
                 } else {
                     completion(.failure(.invalidData))
