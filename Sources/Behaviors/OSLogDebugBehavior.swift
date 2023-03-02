@@ -54,12 +54,12 @@ open class OSLogDebugBehavior: NetworkRequestBehavior {
 
     open func shouldLogRequest(_ request: URLRequest) -> Bool {
         // override point for filtering requests
-        return true
+        true
     }
 
     open func shouldLogResponse(_ response: HTTPURLResponse) -> Bool {
         // override point for filtering responses
-        return true
+        true
     }
 
     func extractSentData(request: URLRequest, session: URLSession) -> DebugData {
@@ -90,7 +90,7 @@ open class OSLogDebugBehavior: NetworkRequestBehavior {
         let statusCode = response.statusCode
         let bodyStr: String
 
-        if let data = data {
+        if let data {
             if response.containsJSONContent || response.containsXWWWFormContent || response.containsTextContent {
                 bodyStr = String(data: data, encoding: .utf8) ?? "<invalid body data>"
             } else {

@@ -4,39 +4,39 @@ import Foundation
 public extension HTTPStatusCode {
     /// Informational - Request received, continuing process.
     var isInformational: Bool {
-        return isIn(range: 100 ... 199)
+        isIn(range: 100 ... 199)
     }
 
     /// Success - The action was successfully received, understood, and accepted.
     var isSuccess: Bool {
-        return isIn(range: 200 ... 299)
+        isIn(range: 200 ... 299)
     }
 
     /// Redirection - Further action must be taken in order to complete the request.
     var isRedirection: Bool {
-        return isIn(range: 300 ... 399)
+        isIn(range: 300 ... 399)
     }
 
     /// Client Error - The request contains bad syntax or cannot be fulfilled.
     var isClientError: Bool {
-        return isIn(range: 400 ... 499)
+        isIn(range: 400 ... 499)
     }
 
     /// Server Error - The server failed to fulfill an apparently valid request.
     var isServerError: Bool {
-        return isIn(range: 500 ... 599)
+        isIn(range: 500 ... 599)
     }
 
     /// - returns: `true` if the status code is in the provided range, false otherwise.
     private func isIn(range: ClosedRange<HTTPStatusCode.RawValue>) -> Bool {
-        return range.contains(rawValue)
+        range.contains(rawValue)
     }
 }
 
 public extension HTTPStatusCode {
     /// - returns: a localized string suitable for displaying to users that describes the specified status code.
     var localizedReasonPhrase: String {
-        return HTTPURLResponse.localizedString(forStatusCode: rawValue)
+        HTTPURLResponse.localizedString(forStatusCode: rawValue)
     }
 }
 
@@ -44,11 +44,11 @@ public extension HTTPStatusCode {
 
 extension HTTPStatusCode: CustomDebugStringConvertible, CustomStringConvertible {
     public var description: String {
-        return "\(rawValue) - \(localizedReasonPhrase)"
+        "\(rawValue) - \(localizedReasonPhrase)"
     }
 
     public var debugDescription: String {
-        return "HTTPStatusCode:\(description)"
+        "HTTPStatusCode:\(description)"
     }
 }
 
@@ -79,12 +79,12 @@ public extension HTTPURLResponse {
      * - returns: the receiver’s HTTP status code.
      */
     @objc(statusCodeValue) var statusCodeEnum: HTTPStatusCode {
-        return HTTPStatusCode(HTTPResponse: self)!
+        HTTPStatusCode(HTTPResponse: self)!
     }
 
     /// - returns: the receiver’s HTTP status code.
     var statusCodeValue: HTTPStatusCode? {
-        return HTTPStatusCode(HTTPResponse: self)
+        HTTPStatusCode(HTTPResponse: self)
     }
 
     /**
