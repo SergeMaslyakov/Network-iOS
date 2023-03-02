@@ -7,8 +7,6 @@ import Foundation
 ///
 
 public enum NetworkLayer {
-    // MARK: - Supporting data
-
     // swiftlint:disable weak_delegate
     public struct Configuration {
         public init(timeout: TimeInterval,
@@ -50,7 +48,8 @@ public enum NetworkLayer {
 
         public var loadedData: Data?
 
-        public init(task: URLSessionDataTask, completionHandler: ((Data?, URLResponse?, Error?) -> Void)? = nil) {
+        public init(task: URLSessionDataTask,
+                    completionHandler: ((Data?, URLResponse?, Error?) -> Void)? = nil) {
             self.task = task
             self.completionHandler = completionHandler
         }
@@ -60,14 +59,15 @@ public enum NetworkLayer {
         public let task: URLSessionDownloadTask
         public let completionHandler: ((URL?, URLResponse?, Error?) -> Void)?
 
-        public init(task: URLSessionDownloadTask, completionHandler: ((URL?, URLResponse?, Error?) -> Void)? = nil) {
+        public init(task: URLSessionDownloadTask,
+                    completionHandler: ((URL?, URLResponse?, Error?) -> Void)? = nil) {
             self.task = task
             self.completionHandler = completionHandler
         }
     }
 }
 
-public protocol NetworkClient {
+public protocol NetworkClient: NetworkClientAsync {
     var isBackgroundSession: Bool { get }
     var sendImmediately: Bool { get set }
     var urlSession: URLSession { get }
@@ -75,11 +75,28 @@ public protocol NetworkClient {
     func sendRequest<T: Decodable>(endpoint: EndpointDescriptor,
                                    completion: @escaping (Result<T, NetworkError>) -> Void) throws -> NetworkLayer.SessionTaskData
 
-    func sendRequest(endpoint: EndpointDescriptor, sendImmediately: Bool,
+    func sendRequest(endpoint: EndpointDescriptor,
+                     sendImmediately: Bool,
                      completion: @escaping (Result<Data?, NetworkError>) -> Void) throws -> NetworkLayer.SessionTaskData
 
-    func downloadTask(endpoint: EndpointDescriptor, sendImmediately: Bool,
+    func downloadTask(endpoint: EndpointDescriptor,
+                      sendImmediately: Bool,
                       completion: @escaping (Result<URL, NetworkError>) -> Void) throws -> NetworkLayer.SessionDownloadTaskData
+}
+
+public protocol NetworkClientAsync {
+    func sendRequest<T: Decodable>(
+        endpoint: EndpointDescriptor
+    ) async throws -> T
+
+    func sendRequest(
+        endpoint: EndpointDescriptor
+    ) async throws -> Data
+
+    @available(iOS 15.0, *)
+    func sendRequest(
+        endpoint: EndpointDescriptor
+    ) async throws -> URL
 }
 
 // swiftlint:disable function_parameter_count
@@ -152,74 +169,51 @@ extension NetworkClient {
         return existingComponents
     }
 
-    // MARK: - Error handling
-
-    func processTaskError<T>(error: Error?, completion: @escaping ((Result<T, NetworkError>) -> Void)) {
-        let responseError: NetworkError
-
-        if let error {
-            responseError = .underlyingError(error)
-        } else {
-            responseError = .invalidResponse
-        }
-
-        completion(.failure(responseError))
-    }
-
     // MARK: - Validation
 
     func validate(request: URLRequest,
                   response: HTTPURLResponse,
-                  data: Data?,
-                  _ completion: @escaping (Result<Data?, NetworkError>) -> Void) {
+                  data: Data?) throws -> Data? {
         let statusCode = HTTPStatusCode(rawValue: response.statusCode) ?? .badResponse
 
         if !statusCode.isSuccess {
             if let data, response.containsJSONContent {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                    completion(.failure(.httpErrorWithData(statusCode, json)))
+                    throw NetworkError.httpErrorWithData(statusCode, json)
                 } catch {
-                    completion(.failure(.httpError(statusCode)))
+                    throw NetworkError.httpError(statusCode)
                 }
             } else if let data, response.containsTextContent {
                 let text = String(data: data, encoding: .utf8) ?? ""
-                completion(.failure(.httpErrorWithData(statusCode, text)))
+                throw NetworkError.httpErrorWithData(statusCode, text)
             } else {
-                completion(.failure(.httpError(statusCode)))
+                throw NetworkError.httpError(statusCode)
             }
-        } else {
-            completion(.success(data))
         }
+
+        return data
     }
 
     func validate(request: URLRequest,
                   response: HTTPURLResponse,
-                  fileURL: URL?,
-                  _ completion: @escaping (Result<URL, NetworkError>) -> Void) {
+                  fileURL: URL) throws -> URL {
         let statusCode = HTTPStatusCode(rawValue: response.statusCode) ?? .badResponse
 
-        if statusCode.isSuccess {
-            if let fileURL {
-                completion(.success(fileURL))
-            } else {
-                completion(.failure(.invalidData))
-            }
-        } else {
-            completion(.failure(.httpError(statusCode)))
-        }
+        guard statusCode.isSuccess else { throw NetworkError.httpError(statusCode) }
+
+        return fileURL
     }
 
     // MARK: - Parsing
 
-    func parse<T: Decodable>(data: Data, decoder: NetworkResponseDecoding,
-                             _ keyPath: String?,
-                             _ completion: @escaping (Result<T, NetworkError>) -> Void) {
+    func parse<T: Decodable>(data: Data,
+                             decoder: NetworkResponseDecoding,
+                             _ keyPath: String?) throws -> T {
         do {
-            let result: T = try decoder.decode(data: data, keyPath: keyPath)
-            completion(.success(result))
+            return try decoder.decode(data: data, keyPath: keyPath)
         } catch {
-            completion(.failure(.decodingError(error)))
+            throw NetworkError.decodingError(error)
         }
     }
 }

@@ -26,4 +26,9 @@ public enum NetworkError: Error {
         default: return .badResponse
         }
     }
+
+    static func makeResponseError(from error: Error?) -> Self {
+        guard let error else { return .invalidResponse }
+        return .underlyingError(error)
+    }
 }
